@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/adson-SO/compassolisa#readme",
   "dependencies": {
+    "@joi/date": "^2.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "joi": "^17.5.0",

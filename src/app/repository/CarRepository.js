@@ -1,4 +1,4 @@
-const CarSchema = require('../../infra/database/mongo');
+const CarSchema = require('../schema/CarSchema');
 
 class CarRepository {
     async create(payload) {
