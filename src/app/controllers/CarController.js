@@ -10,6 +10,15 @@ class CarController {
             res.status(400).json({ message: err.message });
         }
     }
+
+    async find(req, res) {
+        try {
+            const cars = await CarService.find();
+            res.status(200).json(cars);
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+        }
+    }
 }
 
 module.exports = new CarController();
