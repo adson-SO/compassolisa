@@ -7,7 +7,10 @@ class CarRepository {
     }
 
     async find(queryParams) {
-        const cars = await CarSchema.find(queryParams, '-__v');
+        const cars = await CarSchema.paginate(queryParams, {
+            select: '_id modelo cor ano acessorios quantidadePassageiros',
+            customLabels: { docs: 'veiculos', totalDocs: 'total' }
+        });
         return cars;
     }
 }
