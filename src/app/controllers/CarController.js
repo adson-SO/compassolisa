@@ -41,8 +41,9 @@ class CarController {
             const car = await CarService.findById(carId);
             if(car === null) {
                 res.status(404).json({ message: 'Not Found' });
+            } else {
+                res.status(200).json(car);
             }
-            res.status(200).json(car);
         } catch (err) {
             res.status(400).json({ message: err.message });
         }

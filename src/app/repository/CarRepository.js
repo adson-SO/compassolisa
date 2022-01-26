@@ -19,7 +19,7 @@ class CarRepository {
     }
 
     async findById(id) {
-        const car = await CarSchema.findById(id, '-__v');
+        const car = await CarSchema.findOne({ _id: id }, '-__v');
         return car;
     }
 }
