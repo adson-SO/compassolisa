@@ -12,6 +12,11 @@ class CarService {
         const cars = await CarRepository.find(queryParams);
         return cars;
     }
+
+    async findById(id) {
+        const car = await CarRepository.findById(id);
+        return car;
+    }
 }
 
 module.exports = new CarService();

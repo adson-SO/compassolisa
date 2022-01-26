@@ -13,6 +13,11 @@ class CarRepository {
         });
         return cars;
     }
+
+    async findById(id) {
+        const car = await CarSchema.findById(id, '-__v');
+        return car;
+    }
 }
 
 module.exports = new CarRepository();
