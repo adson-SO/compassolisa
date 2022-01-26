@@ -6,7 +6,7 @@ module.exports = async (req, res, next) => {
             modelo: Joi.string().required(),
             cor: Joi.string().required(),
             ano: Joi.date().raw().less('2023').min('1950').required(),
-            acessorios: Joi.array().min(1).items(Joi.object({ descricao: Joi.string() }).min(1)).required(),
+            acessorios: Joi.array().unique().min(1).items(Joi.object({ descricao: Joi.string() }).min(1)).required(),
             quantidadePassageiros: Joi.number().integer().required()
         });
 
