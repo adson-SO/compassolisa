@@ -14,6 +14,10 @@ class CarRepository {
         return cars;
     }
 
+    async delete(id) {
+        return CarSchema.deleteOne({ _id: id });
+    }
+
     async findById(id) {
         const car = await CarSchema.findById(id, '-__v');
         return car;

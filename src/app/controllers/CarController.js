@@ -24,7 +24,12 @@ class CarController {
     async delete(req, res) {
         const carId = req.params.id;
         try {
-            
+            const car = await CarService.findById(carId);
+            if(car === null) {
+                res.status(404).json({ message: 'Not Found' });
+            }
+            await CarService.delete(carId);
+            res.status(204).end();
         } catch (err) {
             res.status(400).json({ message: err.message });
         }
@@ -34,9 +39,12 @@ class CarController {
         const carId = req.params.id;
         try {
             const car = await CarService.findById(carId);
+            if(car === null) {
+                res.status(404).json({ message: 'Not Found' });
+            }
             res.status(200).json(car);
         } catch (err) {
-            res.status(404).json({ message: err.message });
+            res.status(400).json({ message: err.message });
         }
     }
 }

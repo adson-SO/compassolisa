@@ -1,5 +1,4 @@
 const CarRepository = require('../repository/CarRepository');
-const moment = require('moment');
 
 class CarService {
     async create(payload) {
@@ -11,6 +10,10 @@ class CarService {
         if(Object.keys(queryParams).length === 0) queryParams = {};
         const cars = await CarRepository.find(queryParams);
         return cars;
+    }
+
+    async delete(id) {
+        return CarRepository.delete(id);
     }
 
     async findById(id) {
