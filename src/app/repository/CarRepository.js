@@ -6,8 +6,8 @@ class CarRepository {
         return car;
     }
 
-    async find() {
-        const cars = await CarSchema.find();
+    async find(queryParams) {
+        const cars = await CarSchema.find(queryParams, '-__v');
         return cars;
     }
 }

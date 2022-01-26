@@ -12,8 +12,9 @@ class CarController {
     }
 
     async find(req, res) {
+        const queryParams = req.query;
         try {
-            const cars = await CarService.find();
+            const cars = await CarService.find(queryParams);
             res.status(200).json(cars);
         } catch (err) {
             res.status(500).json({ message: err.message });
