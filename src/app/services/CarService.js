@@ -16,6 +16,11 @@ class CarService {
         return CarRepository.delete(id);
     }
 
+    async update(id, newData) {
+        const car = await CarRepository.update(id, newData);
+        return car;
+    }
+
     async findById(id) {
         const car = await CarRepository.findById(id);
         return car;

@@ -18,6 +18,11 @@ class CarRepository {
         return CarSchema.deleteOne({ _id: id });
     }
 
+    async update(id, newData) {
+        const car = await CarSchema.updateOne({ _id: id }, newData);
+        return car;
+    }
+
     async findById(id) {
         const car = await CarSchema.findOne({ _id: id }, '-__v');
         return car;
