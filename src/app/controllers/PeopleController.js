@@ -35,6 +35,18 @@ class PeopleController {
         }
     }
 
+    async update(req, res) {
+        const peopleId = req.params.id;
+        const newData = req.body;
+        try {
+            await PeopleService.update(peopleId, newData);
+            const updatedPeople = await PeopleService.findById(peopleId);
+            res.status(200).json(updatedPeople);
+        } catch (err) {
+            res.status(400).json({ message: err.message });
+        }
+    }
+
     async findById(req, res) {
         const peopleId = req.params.id;
         try {

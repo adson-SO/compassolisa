@@ -13,7 +13,11 @@ class PeopleService {
     }
 
     async delete(id) {
-        return PeopleRepository.delete(id);
+        await PeopleRepository.delete(id);
+    }
+
+    async update(id, newData) {
+        await PeopleRepository.update(id, newData);
     }
 
     async findById(id) {

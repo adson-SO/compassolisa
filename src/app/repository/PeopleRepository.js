@@ -12,7 +12,11 @@ class PeopleRepository {
     }
 
     async delete(id) {
-        return PeopleSchema.deleteOne({ _id: id });
+        await PeopleSchema.deleteOne({ _id: id });
+    }
+
+    async update(id, newData) {
+        await PeopleSchema.updateOne({ _id: id }, newData);
     }
 
     async findById(id) {
