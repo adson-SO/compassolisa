@@ -11,6 +11,11 @@ class PeopleService {
         const result = await PeopleRepository.find(queryParams);
         return result;
     }
+
+    async findById(id) {
+        const people = await PeopleRepository.findById(id);
+        return people;
+    }
 }
 
 module.exports = new PeopleService;

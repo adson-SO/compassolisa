@@ -10,6 +10,11 @@ class PeopleRepository {
         const result = await PeopleSchema.find(queryParams);
         return result;
     }
+
+    async findById(id) {
+        const people = await PeopleSchema.findOne({ _id: id }, '-__v');
+        return people;
+    }
 }
 
 module.exports = new PeopleRepository;
