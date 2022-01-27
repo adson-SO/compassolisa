@@ -10,6 +10,15 @@ class PeopleController {
             res.status(400).json({ message: err.message });
         }
     }
+
+    async find(req, res) {
+        try {
+            const result = await PeopleService.find();
+            res.status(200).json(result);
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+        }
+    }
 }
 
 module.exports = new PeopleController;

@@ -5,6 +5,11 @@ class PeopleService {
         const people = await PeopleRepository.create(payload);
         return people;
     }
+
+    async find() {
+        const result = await PeopleRepository.find();
+        return result;
+    }
 }
 
 module.exports = new PeopleService;
