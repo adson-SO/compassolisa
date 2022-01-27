@@ -11,6 +11,10 @@ class PeopleRepository {
         return result;
     }
 
+    async delete(id) {
+        return PeopleSchema.deleteOne({ _id: id });
+    }
+
     async findById(id) {
         const people = await PeopleSchema.findOne({ _id: id }, '-__v');
         return people;

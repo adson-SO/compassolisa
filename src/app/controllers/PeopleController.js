@@ -21,6 +21,20 @@ class PeopleController {
         }
     }
 
+    async delete(req, res) {
+        const peopleId = req.params.id;
+        try {
+            const people = await PeopleService.findById(peopleId);
+            if(people === null) {
+                res.status(404).json({ message: 'Not Found' });
+            }
+            await PeopleService.delete(peopleId);
+            res.status(204).end();
+        } catch (err) {
+            res.status(400).json({ message: err.message });
+        }
+    }
+
     async findById(req, res) {
         const peopleId = req.params.id;
         try {

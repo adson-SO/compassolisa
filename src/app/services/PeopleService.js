@@ -12,6 +12,10 @@ class PeopleService {
         return result;
     }
 
+    async delete(id) {
+        return PeopleRepository.delete(id);
+    }
+
     async findById(id) {
         const people = await PeopleRepository.findById(id);
         return people;
