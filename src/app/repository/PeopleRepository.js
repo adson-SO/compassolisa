@@ -6,8 +6,8 @@ class PeopleRepository {
         return people;
     }
 
-    async find() {
-        const result = await PeopleSchema.find();
+    async find(queryParams) {
+        const result = await PeopleSchema.find(queryParams);
         return result;
     }
 }

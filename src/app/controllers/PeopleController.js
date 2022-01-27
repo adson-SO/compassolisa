@@ -12,8 +12,9 @@ class PeopleController {
     }
 
     async find(req, res) {
+        const queryParams = req.query;
         try {
-            const result = await PeopleService.find();
+            const result = await PeopleService.find(queryParams);
             res.status(200).json(result);
         } catch (err) {
             res.status(500).json({ message: err.message });
