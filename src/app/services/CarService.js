@@ -13,7 +13,7 @@ class CarService {
     }
 
     async delete(id) {
-        return CarRepository.delete(id);
+        await CarRepository.delete(id);
     }
 
     async update(id, newData) {
