@@ -9,7 +9,8 @@ class PeopleService {
 
     async find(queryParams) {
         if(Object.keys(queryParams).length === 0) queryParams = {};
-        const result = await PeopleRepository.find(queryParams);
+        const people = await PeopleRepository.find(queryParams);
+        const result = people.map(person => this.formatCPF(person));
         return result;
     }
 

@@ -7,7 +7,7 @@ class PeopleRepository {
     }
 
     async find(queryParams) {
-        const result = await PeopleSchema.find(queryParams);
+        const result = await PeopleSchema.find(queryParams, '-__v');
         return result;
     }
 
