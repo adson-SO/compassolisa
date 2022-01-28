@@ -3,10 +3,10 @@ const Joi = require('joi').extend(require('@joi/date'));
 module.exports = async (req, res, next) => {
     try {
         const schema = Joi.object({
-            modelo: Joi.string(),
-            cor: Joi.string(),
+            modelo: Joi.string().min(3),
+            cor: Joi.string().min(3),
             ano: Joi.date().raw().less('2023').min('1950'),
-            acessorios: Joi.array().unique().min(1).items(Joi.object({ descricao: Joi.string() }).min(1)),
+            acessorios: Joi.array().unique().min(1).items(Joi.object({ descricao: Joi.string().required() }).min(1)),
             quantidadePassageiros: Joi.number().integer()
         });
 
