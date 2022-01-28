@@ -19,7 +19,8 @@ class PeopleService {
     }
 
     async update(id, newData) {
-        await PeopleRepository.update(id, newData);
+        const people = await PeopleRepository.update(id, newData);
+        return people;
     }
 
     async findById(id) {

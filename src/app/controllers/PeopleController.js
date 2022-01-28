@@ -39,9 +39,12 @@ class PeopleController {
         const peopleId = req.params.id;
         const newData = req.body;
         try {
-            await PeopleService.update(peopleId, newData);
-            const updatedPeople = await PeopleService.findById(peopleId);
-            res.status(200).json(updatedPeople);
+            const updatedPeople = await PeopleService.update(peopleId, newData);
+            if(updatedPeople === null) {
+                res.status(404).json({ message: 'Not Found' });
+            } else {
+                res.status(200).json(updatedPeople);
+            }
         } catch (err) {
             res.status(400).json({ message: err.message });
         }
