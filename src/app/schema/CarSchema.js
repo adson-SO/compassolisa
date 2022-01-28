@@ -4,7 +4,7 @@ const mongoosePaginate = require('mongoose-paginate-v2');
 const CarSchema = mongoose.Schema({
     modelo: String,
     cor: String,
-    ano: Date,
+    ano: String,
     acessorios: [{ descricao: {
         type: String
     }, _id: false }],
