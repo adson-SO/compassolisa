@@ -39,9 +39,12 @@ class CarController {
         const carId = req.params.id;
         const newData = req.body;
         try {
-            await CarService.update(carId, newData);
-            const car = await CarService.findById(carId);
-            res.status(200).json(car);
+            const car = await CarService.update(carId, newData);
+            if(car === null) {
+                res.status(404).json({ message: 'Not Found' });
+            } else {
+                res.status(200).json(car);
+            }
         } catch (err) {
             res.status(400).json({ message: err.message });
         }

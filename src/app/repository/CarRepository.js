@@ -21,7 +21,8 @@ class CarRepository {
     }
 
     async update(id, newData) {
-        await CarSchema.updateOne({ _id: id }, newData);
+        const car = await CarSchema.findOneAndUpdate({ _id: id }, newData);
+        return car;
     }
 
     async findById(id) {
