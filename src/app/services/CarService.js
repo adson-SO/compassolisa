@@ -17,8 +17,7 @@ class CarService {
     }
 
     async update(id, newData) {
-        const car = await CarRepository.update(id, newData);
-        return car;
+        await CarRepository.update(id, newData);
     }
 
     async findById(id) {
