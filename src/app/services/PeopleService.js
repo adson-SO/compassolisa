@@ -28,6 +28,11 @@ class PeopleService {
         return people;
     }
 
+    async findOne(obj) {
+        const result = await PeopleRepository.findOne(obj);
+        return result;
+    }
+
     formatCPF(payload) {
         const cpf = payload.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
         const result = Object.assign(payload, { cpf: cpf });

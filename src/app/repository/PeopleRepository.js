@@ -24,6 +24,11 @@ class PeopleRepository {
         const people = await PeopleSchema.findOne({ _id: id }, '-__v');
         return people;
     }
+
+    async findOne(obj) {
+        const result = await PeopleSchema.findOne(obj);
+        return result;
+    }
 }
 
 module.exports = new PeopleRepository;

@@ -1,4 +1,6 @@
 const PeopleService = require('../services/PeopleService');
+const jwt = require('jsonwebtoken');
+const authConfig = require('../../config/auth.json');
 
 class PeopleController {
     async create(req, res) {
@@ -59,6 +61,31 @@ class PeopleController {
             } else {
                 res.status(200).json(people);
             }
+        } catch (err) {
+            res.status(400).json({ message: err.message });
+        }
+    }
+
+    async authenticate(req, res) {
+        const email = req.body.email;
+        const senha = req.body.senha;
+        try {
+            const people = await PeopleService.findOne({ email: email, senha: senha });
+            if(!people) {
+                res.status(404).json({ message: 'Not Found' });
+            }
+
+            const token = jwt.sign({ id: people._id }, authConfig.secret, {
+                expiresIn: 86400
+            });
+
+            res.status(200).json({ 
+                people: {
+                    email: people.email,
+                    habilitado: people.habilitado
+                }, 
+                token 
+            });
         } catch (err) {
             res.status(400).json({ message: err.message });
         }
