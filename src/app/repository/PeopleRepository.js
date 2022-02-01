@@ -21,7 +21,7 @@ class PeopleRepository {
     }
 
     async findById(id) {
-        const people = await PeopleSchema.findOne({ _id: id }, '-__v');
+        const people = await PeopleSchema.findById(id, '-__v');
         return people;
     }
 

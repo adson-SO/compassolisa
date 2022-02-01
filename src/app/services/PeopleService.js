@@ -25,7 +25,8 @@ class PeopleService {
 
     async findById(id) {
         const people = await PeopleRepository.findById(id);
-        return people;
+        const result = this.formatCPF(people);
+        return result;
     }
 
     async findOne(obj) {
