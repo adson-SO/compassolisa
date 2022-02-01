@@ -4,10 +4,10 @@ const people = require('./people.router');
 const authenticate = require('./authenticate.router');
 
 module.exports = server => {
-    server.use((req, res, next) => {
-        car(server, new Router());
-        people(server, new Router());
-        authenticate(server, new Router());
-        next();
-    });
-}
+  server.use((req, res, next) => {
+    car(server, new Router());
+    people(server, new Router());
+    authenticate(server, new Router());
+    next();
+  });
+};

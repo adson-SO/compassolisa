@@ -3,93 +3,93 @@ const jwt = require('jsonwebtoken');
 const authConfig = require('../../config/auth.json');
 
 class PeopleController {
-    async create(req, res) {
-        const payload = req.body;
-        try {
-            const people = await PeopleService.create(payload);
-            res.status(201).json(people);
-        } catch (err) {
-            res.status(400).json({ message: err.message });
-        }
+  async create(req, res) {
+    const payload = req.body;
+    try {
+      const people = await PeopleService.create(payload);
+      res.status(201).json(people);
+    } catch (err) {
+      res.status(400).json({ message: err.message });
     }
+  }
 
-    async find(req, res) {
-        const queryParams = req.query;
-        try {
-            const result = await PeopleService.find(queryParams);
-            res.status(200).json(result);
-        } catch (err) {
-            res.status(500).json({ message: err.message });
-        }
+  async find(req, res) {
+    const queryParams = req.query;
+    try {
+      const result = await PeopleService.find(queryParams);
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
     }
+  }
 
-    async delete(req, res) {
-        const peopleId = req.params.id;
-        try {
-            const people = await PeopleService.findById(peopleId);
-            if(people === null) {
-                res.status(404).json({ message: 'Not Found' });
-            }
-            await PeopleService.delete(peopleId);
-            res.status(204).end();
-        } catch (err) {
-            res.status(400).json({ message: err.message });
-        }
+  async delete(req, res) {
+    const peopleId = req.params.id;
+    try {
+      const people = await PeopleService.findById(peopleId);
+      if(people === null) {
+        res.status(404).json({ message: 'Not Found' });
+      }
+      await PeopleService.delete(peopleId);
+      res.status(204).end();
+    } catch (err) {
+      res.status(400).json({ message: err.message });
     }
+  }
 
-    async update(req, res) {
-        const peopleId = req.params.id;
-        const newData = req.body;
-        try {
-            const updatedPeople = await PeopleService.update(peopleId, newData);
-            if(updatedPeople === null) {
-                res.status(404).json({ message: 'Not Found' });
-            } else {
-                res.status(200).json(updatedPeople);
-            }
-        } catch (err) {
-            res.status(400).json({ message: err.message });
-        }
+  async update(req, res) {
+    const peopleId = req.params.id;
+    const newData = req.body;
+    try {
+      const updatedPeople = await PeopleService.update(peopleId, newData);
+      if(updatedPeople === null) {
+        res.status(404).json({ message: 'Not Found' });
+      } else {
+        res.status(200).json(updatedPeople);
+      }
+    } catch (err) {
+      res.status(400).json({ message: err.message });
     }
+  }
 
-    async findById(req, res) {
-        const peopleId = req.params.id;
-        try {
-            const people = await PeopleService.findById(peopleId);
-            if(people === null) {
-                res.status(404).json({ message: 'Not Found' });
-            } else {
-                res.status(200).json(people);
-            }
-        } catch (err) {
-            res.status(400).json({ message: err.message });
-        }
+  async findById(req, res) {
+    const peopleId = req.params.id;
+    try {
+      const people = await PeopleService.findById(peopleId);
+      if(people === null) {
+        res.status(404).json({ message: 'Not Found' });
+      } else {
+        res.status(200).json(people);
+      }
+    } catch (err) {
+      res.status(400).json({ message: err.message });
     }
+  }
 
-    async authenticate(req, res) {
-        const email = req.body.email;
-        const senha = req.body.senha;
-        try {
-            const people = await PeopleService.findOne({ email: email, senha: senha });
-            if(!people) {
-                res.status(404).json({ message: 'Not Found' });
-            }
+  async authenticate(req, res) {
+    const email = req.body.email;
+    const senha = req.body.senha;
+    try {
+      const people = await PeopleService.findOne({ email: email, senha: senha });
+      if(!people) {
+        res.status(404).json({ message: 'Not Found' });
+      }
 
-            const token = jwt.sign({ id: people._id }, authConfig.secret, {
-                expiresIn: 86400
-            });
+      const token = jwt.sign({ id: people._id }, authConfig.secret, {
+        expiresIn: 86400
+      });
 
-            res.status(200).json({ 
-                people: {
-                    email: people.email,
-                    habilitado: people.habilitado
-                }, 
-                token 
-            });
-        } catch (err) {
-            res.status(400).json({ message: err.message });
-        }
+      res.status(200).json({ 
+        people: {
+          email: people.email,
+          habilitado: people.habilitado
+        }, 
+        token 
+      });
+    } catch (err) {
+      res.status(400).json({ message: err.message });
     }
+  }
 }
 
 module.exports = new PeopleController;
