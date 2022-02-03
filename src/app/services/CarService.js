@@ -3,7 +3,15 @@ const CarRepository = require('../repository/CarRepository');
 class CarService {
   async create(payload) {
     const car = await CarRepository.create(payload);
-    return car;
+    const result = {
+      _id: car._id,
+      modelo: car.modelo,
+      cor: car.cor,
+      ano: car.ano,
+      acessorios: car.acessorios,
+      quantidadePassageiros: car.quantidadePassageiros
+    };
+    return result;
   }
 
   async find(queryParams) {
