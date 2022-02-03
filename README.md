@@ -94,4 +94,68 @@ npm start
 
 ### DELETE - `http://localhost:3000/api/v1/car/:id`
 
-> Deleta um carro através de seu ID
+> Deletar um carro através de seu ID
+
+### POST - `http://localhost:3000/api/v1/people`
+
+> Cadastrar uma pessoa
+
+> Exemplo
+
+```json
+{
+  "nome": "joaozinho ciclano",
+  "cpf": "13114786049",
+  "data_nascimento": "03/03/2021",
+  "email": "joazinho@email.com",
+  "senha": "123456",
+  "habilitado": "sim"
+}
+```
+
+### GET - `http://localhost:3000/api/v1/people`
+
+> Listar todas as pessoas cadastradas
+
+### GET - `http://localhost:3000/api/v1/people/:id`
+
+> Buscar uma pessoa específica pelo ID
+
+### PUT - `http://localhost:3000/api/v1/people/:id`
+
+> Atualizar uma pessoa específica pelo ID
+
+> Exemplo
+
+```json
+{
+"data_nascimento": "04/03/2021",
+"habilitado": "não"
+}
+```
+
+### DELETE - `http://localhost:3000/api/v1/people/:id`
+
+> Deletar uma pessoa pelo seu ID
+
+### POST - `http://localhost:3000/api/v1/authenticate`
+
+> Rota para autenticar usuário
+
+> Exemplo
+
+```json
+{
+  "email": "joazinho@email.com",
+  "senha": "123456"
+}
+```
+
+# 😊 Agradecimentos
+
+- Felipe Silva
+- Bruna Santos
+- Gabriel Missio
+- Thais Nicodemus
+- Diego Bueno 
+- Giovanni Hoffmann
