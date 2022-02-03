@@ -17,7 +17,7 @@ class CarRepository {
   }
 
   async delete(id) {
-    await CarSchema.deleteOne({ _id: id });
+    await CarSchema.findByIdAndDelete(id);
   }
 
   async update(id, newData) {
