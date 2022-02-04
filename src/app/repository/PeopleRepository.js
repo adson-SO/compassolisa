@@ -21,7 +21,7 @@ class PeopleRepository {
   }
 
   async update(id, newData) {
-    const people = await PeopleSchema.findByIdAndUpdate(id, newData);
+    const people = await PeopleSchema.findByIdAndUpdate(id, newData, { returnDocument: 'after' });
     return people;
   }
 
