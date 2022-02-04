@@ -2,8 +2,17 @@ const PeopleRepository = require('../repository/PeopleRepository');
 
 class PeopleService {
   async create(payload) {
-    const people = await PeopleRepository.create(payload);
-    const result = this.formatCPF(people);
+    const data = await PeopleRepository.create(payload);
+    const people = this.formatCPF(data);
+    const result = {
+      _id: people._id,
+      nome: people.nome,
+      cpf: people.cpf,
+      data_nascimento: people.data_nascimento,
+      email: people.email,
+      senha: people.senha,
+      habilitado: people.habilitado
+    };
     return result;
   }
 
