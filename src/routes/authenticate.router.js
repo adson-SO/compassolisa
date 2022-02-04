@@ -1,6 +1,6 @@
-const PeopleController = require('../app/controllers/PeopleController');
+const AuthenticateController = require('../app/controllers/AuthenticateController');
 
 module.exports = (server, routes, prefix = '/api/v1/authenticate') => {
-  routes.post('/', PeopleController.authenticate);
+  routes.post('/', AuthenticateController.authenticate);
   server.use(prefix, routes);
 };
