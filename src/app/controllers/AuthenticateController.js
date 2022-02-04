@@ -17,7 +17,7 @@ class AuthenticateController {
             });
 
             res.status(200).json({
-                people: {
+                pessoa: {
                     email: people.email,
                     habilitado: people.habilitado
                 },
