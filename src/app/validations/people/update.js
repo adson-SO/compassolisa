@@ -6,7 +6,7 @@ module.exports = async (req, res, next) => {
   try {
     const schema = Joi.object({
       nome: Joi.string().min(3),
-      cpf: Joi.string().length(11).pattern(/^[0-9]+$/),
+      cpf: Joi.string().length(14).replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'),
       data_nascimento: Joi.date().format('DD/MM/YYYY').raw().max(birthDate),
       email: Joi.string().email(),
       senha: Joi.string().min(6),

@@ -32,14 +32,7 @@ class PeopleService {
 
   async findById(id) {
     const people = await PeopleRepository.findById(id);
-    const result = this.formatCPF(people);
-    return result;
-  }
-
-  formatCPF(payload) {
-    const cpf = payload.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-    const result = Object.assign(payload, { cpf: cpf });
-    return result;
+    return people;
   }
 }
 
