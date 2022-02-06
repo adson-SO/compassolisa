@@ -1,0 +1,561 @@
+openapi: 3.0.1
+info: 
+  title: API Compassolisa
+  description: API para cadastrar carros e clientes da Compassolisa, uma locadora de carros de luxo e semi-luxo.
+  version: 1.0.0
+externalDocs:
+  description: Documentação
+  url: https://github.com/adson-SO/compassolisa
+servers:
+- url: http://localhost:3000/api/v1
+  description: API Compassolisa
+paths: 
+  /car:
+    post:
+      summary: Cadastra novo carro
+      requestBody: 
+        content:
+          application/json:
+            schema: 
+              type: object
+              properties:
+                modelo:
+                  type: string
+                cor: 
+                  type: string
+                ano:
+                  type: string
+                acessorios:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      descricao: 
+                        type: string
+                quantidadePassageiros:
+                  type: number
+      responses:
+        201: 
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  modelo:
+                    type: string
+                  cor: 
+                    type: string
+                  ano:
+                    type: string
+                  acessorios:
+                    type: array
+                    items: 
+                      type: object
+                      properties:
+                        descricao:
+                          type: string
+                  quantidadePassageiros:
+                    type: number
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              example: Error Message
+    get:
+      summary: Lista todos os carros
+      parameters:
+      - name: modelo
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: cor
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: ano
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: quantidadePasageiros
+        in: query
+        schema:
+          type: number
+        required: false
+      - name: limit
+        in: query
+        schema:
+          type: number
+        required: false
+      - name: offset
+        in: query
+        schema:
+          type: number
+        required: false
+      responses:
+        200:
+          description: OK
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  veiculos:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id: 
+                          type: string
+                        modelo: 
+                          type: string
+                        cor: 
+                          type: string
+                        ano:
+                          type: string
+                        acessorios:
+                          type: array
+                          items:
+                            type: object
+                            properties: 
+                              descricao: 
+                                type: string
+                        quantidadePassageiros:
+                          type: number
+                  total:
+                    type: number
+                  limit: 
+                    type: number
+                  offsets:
+                    type: number
+                  offset: 
+                    type: number
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              example: Error Message
+  /car/{_id}:
+    get:
+      summary: Busca um carro através de seu id
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  modelo:
+                    type: string
+                  cor: 
+                    type: string
+                  ano:
+                    type: string
+                  acessorios:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        descricao:
+                          type: string
+                  quantidadePassageiros:
+                    type: number
+        404:
+          description: Not Found
+          content:
+            application/json:
+              example: Not Found
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              example: Error Message      
+    put:
+      summary: Atualiza um carro
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                modelo:
+                  type: string
+                cor:
+                  type: string
+                ano:
+                  type: string
+                acessorios:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      descricao:
+                        type: string
+                quantidadePassageiros:
+                  type: number
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  modelo:
+                    type: string
+                  cor:
+                    type: string
+                  ano:
+                    type: string
+                  acessorios:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        descricao:
+                          type: string
+                  quantidadePassageiros:
+                    type: number
+                  __v:
+                    type: number
+        404:
+          description: Not Found
+          content: 
+            application/json:
+              example: Not Found
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              example: Error Message
+    delete:
+      summary: Deleta um carro
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        204:
+          description: No Content
+        404:
+          description: Not Found
+          content: 
+            application/json:
+              example: Not Found
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              example: Error Message
+  /people:
+    post:
+      summary: Cadastra nova pessoa
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                cpf:
+                  type: string
+                data_nascimento:
+                  type: string
+                email:
+                  type: string
+                senha:
+                  type: string
+                habilitado:
+                  type: string
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  nome:
+                    type: string
+                  cpf:
+                    type: string
+                  data_nascimento:
+                    type: string
+                  email:
+                    type: string
+                  senha:
+                    type: string
+                  habilitado:
+                    type: string
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              example: Error Message
+    get:
+      summary: Lista todas as pessoas
+      parameters:
+      - name: nome
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: cpf
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: data_nascimento
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: email
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: habilitado
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: limit
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: offset
+        in: query
+        schema:
+          type: string
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pessoas:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                        nome:
+                          type: string
+                        cpf:
+                          type: string
+                        data_nascimento:
+                          type: string
+                        email:
+                          type: string
+                        senha:
+                          type: string
+                        habilitado:
+                          type: string
+                  total:
+                    type: number
+                  limit:
+                    type: number
+                  offsets:
+                    type: number
+                  offset:
+                    type: number
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              example: Error Message
+  /people/{_id}:
+    get:
+      summary: Busca uma pessoa através de seu id
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  nome:
+                    type: string
+                  cpf:
+                    type: string
+                  data_nascimento:
+                    type: string
+                  email:
+                    type: string
+                  senha:
+                    type: string
+                  habilitado:
+                    type: string
+        404:
+          description: Not Found
+          content:
+            application/json:
+              example: Not Found
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              example: Error Message
+    put:
+      summary: Atualiza uma pessoa
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                cpf:
+                  type: string
+                data_nascimento:
+                  type: string
+                email:
+                  type: string
+                senha:
+                  type: string
+                habilitado:
+                  type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  nome:
+                    type: string
+                  cpf:
+                    type: string
+                  data_nascimento:
+                    type: string
+                  email:
+                    type: string
+                  senha:
+                    type: string
+                  habilitado:
+                    type: string
+                  __v:
+                    type: number
+        404:
+          description: Not Found
+          content:
+            application/json:
+              example: Not Found
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              example: Error Message
+    delete:
+      summary: Deleta uma pessoa
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        204:
+          description: No Content
+        404:
+          description: Not Found
+          content:
+            application/json:
+              example: Not Found
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              example: Error Message
+  /authenticate:
+    post:
+      summary: Autentica usuário
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                senha:
+                  type: string
+      responses:
+        200:
+          description: OK
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pessoa:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                      habilitado:
+                        type: string
+                  token:
+                    type: string
+        404:
+          description: Not Found
+          content:
+            application/json:
+              example: Not Found
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              example: Error Message          
