@@ -8,7 +8,10 @@ const PeopleSchema = mongoose.Schema({
     unique: true
   },
   data_nascimento: String,
-  email: String,
+  email: {
+    type: String,
+    unique: true
+  },
   senha: String,
   habilitado: {
     type: String,
