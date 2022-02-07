@@ -24,6 +24,9 @@ module.exports = async (req, res, next) => {
     if(error) throw error;
     return next();
   } catch (err) {
-    return res.status(400).json({ message: err.message });
+    return res.status(400).json({
+      description: err.details[0].context.label,
+      name: err.message
+    });
   }
 };
