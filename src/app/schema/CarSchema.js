@@ -5,9 +5,7 @@ const CarSchema = mongoose.Schema({
   modelo: String,
   cor: String,
   ano: String,
-  acessorios: [{ descricao: {
-    type: String
-  }, _id: false }],
+  acessorios: [{ descricao: String }],
   quantidadePassageiros: Number
 });
 
