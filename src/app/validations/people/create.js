@@ -1,4 +1,5 @@
 const Joi = require('joi').extend(require('@joi/date'));
+const cpfValidate = require('../../../helpers/cpfValidate');
 
 const birthDate = new Date((Date.now()) - (1000 * 60 * 60 * 24 * 365 * 18));
 
@@ -6,7 +7,13 @@ module.exports = async (req, res, next) => {
   try {
     const schema = Joi.object({
       nome: Joi.string().min(3).required(),
-      cpf: Joi.string().length(14).replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4').required(),
+      cpf: Joi.string().length(14).custom((value, helpers) => {
+        if(cpfValidate(value) === false) {
+          return helpers.message('CPF is invalid');
+        } else {
+          return true;
+        }
+      }).required(),
       data_nascimento: Joi.date().format('DD/MM/YYYY').raw().max(birthDate).required(),
       email: Joi.string().email().required(),
       senha: Joi.string().min(6).required(),
