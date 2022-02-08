@@ -70,7 +70,6 @@ class CarController {
     const newData = req.body;
     try {
       const result = await CarService.updateAcessorio(carId, descricaoId, newData);
-      
       res.status(200).json(result);
     } catch (err) {
       res.status(400).json({ message: err.message });
