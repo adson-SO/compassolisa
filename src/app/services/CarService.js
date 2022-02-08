@@ -33,6 +33,11 @@ class CarService {
     const car = await CarRepository.findById(id);
     return car;
   }
+
+  async updateAcessorio(id, descricaoId, newData) {
+    const result = await CarRepository.updateAcessorio(id, descricaoId, newData);
+    return result;
+  }
 }
 
 module.exports = new CarService();

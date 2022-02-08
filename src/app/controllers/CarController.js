@@ -63,6 +63,19 @@ class CarController {
       res.status(400).json({ message: err.message });
     }
   }
+
+  async updateAcessorio(req, res) {
+    const carId = req.params.id;
+    const descricaoId = req.params.descricaoId;
+    const newData = req.body;
+    try {
+      const result = await CarService.updateAcessorio(carId, descricaoId, newData);
+      
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  }
 }
 
 module.exports = new CarController();

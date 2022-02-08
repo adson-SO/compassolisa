@@ -29,6 +29,14 @@ class CarRepository {
     const car = await CarSchema.findById(id, '-__v');
     return car;
   }
+
+  async updateAcessorio(id, descricaoId, newData) {
+    const result = await CarSchema.findOneAndUpdate(
+      { _id: id },
+      { acessorios: { descricao: newData.descricao } },
+      { returnDocument: 'after' });
+    return result;
+  }
 }
 
 module.exports = new CarRepository();

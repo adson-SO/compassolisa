@@ -8,5 +8,6 @@ module.exports = (server, routes, prefix = '/api/v1/car') => {
   routes.delete('/:id', CarController.delete);
   routes.put('/:id', updateValidation, CarController.update);
   routes.get('/:id', CarController.findById);
+  routes.patch('/:id/acessorios/:descricaoId', CarController.updateAcessorio);
   server.use(prefix, routes);
 };
