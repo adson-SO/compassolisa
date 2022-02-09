@@ -11,7 +11,12 @@ const RentalSchema = mongoose.Schema({
     endereco: [
         {
             cep: String,
+            logradouro: String,
+            complemento: String,
+            bairro: String,
             number: String,
+            localidade: String,
+            uf: String,
             isFilial: Boolean
         }
     ]
