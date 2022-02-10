@@ -1,4 +1,3 @@
-const { json } = require('express/lib/response');
 const RentalService = require('../services/RentalService');
 const axios = require('axios').default;
 
@@ -25,6 +24,16 @@ class RentalController {
             res.status(200).json(result);
         } catch (err) {
             res.status(500).json(err);
+        }
+    }
+
+    async findById(req, res) {
+        const { id } = req.params;
+        try {
+            const result = await RentalService.findById(id);
+            res.status(200).json(result);
+        } catch (err) {
+            res.status(400).json(err);
         }
     }
 }

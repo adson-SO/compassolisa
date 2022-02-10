@@ -15,6 +15,11 @@ class RentalRepository {
         });
         return result;
     }
+
+    async findById(id) {
+        const result = await RentalSchema.findById(id, '-__v');
+        return result;
+    }
 }
 
 module.exports = new RentalRepository;

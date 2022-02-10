@@ -11,6 +11,11 @@ class RentalService {
         const result = await RentalRepository.find(queryParams);
         return result;
     }
+
+    async findById(id) {
+        const result = await RentalRepository.findById(id);
+        return result;
+    }
 }
 
 module.exports = new RentalService;
