@@ -17,7 +17,8 @@ const RentalSchema = mongoose.Schema({
             number: String,
             localidade: String,
             uf: String,
-            isFilial: Boolean
+            isFilial: Boolean,
+            _id: false
         }
     ]
 });
