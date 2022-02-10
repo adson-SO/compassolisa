@@ -5,6 +5,12 @@ class RentalService {
         const result = await RentalRepository.create(payload);
         return result;
     }
+
+    async find(queryParams) {
+        if(Object.keys(queryParams).length === 0) queryParams = {}
+        const result = await RentalRepository.find(queryParams);
+        return result;
+    }
 }
 
 module.exports = new RentalService;
