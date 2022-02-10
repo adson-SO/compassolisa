@@ -20,6 +20,11 @@ class RentalRepository {
         const result = await RentalSchema.findById(id, '-__v');
         return result;
     }
+
+    async update(id, payload) {
+        const result = await RentalSchema.findByIdAndUpdate(id, payload, { returnDocument: 'after' });
+        return result;
+    }
 }
 
 module.exports = new RentalRepository;

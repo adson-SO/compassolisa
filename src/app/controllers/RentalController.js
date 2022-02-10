@@ -36,6 +36,17 @@ class RentalController {
             res.status(400).json(err);
         }
     }
+
+    async update(req, res) {
+        const { id } = req.params;
+        const payload = req.body;
+        try {
+            const result = await RentalService.update(id, payload);
+            res.status(200).json(result);
+        } catch (err) {
+            res.status(400).json(err);
+        }
+    }
 }
 
 module.exports = new RentalController;
