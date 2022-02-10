@@ -47,6 +47,16 @@ class RentalController {
             res.status(400).json(err);
         }
     }
+
+    async delete(req, res) {
+        const { id } = req.params;
+        try {
+            await RentalService.delete(id);
+            res.status(204).end();
+        } catch (err) {
+            res.status(400).json(err);
+        }
+    }
 }
 
 module.exports = new RentalController;

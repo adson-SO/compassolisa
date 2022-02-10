@@ -21,6 +21,10 @@ class RentalService {
         const result = await RentalRepository.update(id, payload);
         return result;
     }
+
+    async delete(id) {
+        await RentalRepository.delete(id);
+    }
 }
 
 module.exports = new RentalService;

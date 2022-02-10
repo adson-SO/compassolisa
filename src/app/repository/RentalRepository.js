@@ -25,6 +25,10 @@ class RentalRepository {
         const result = await RentalSchema.findByIdAndUpdate(id, payload, { returnDocument: 'after' });
         return result;
     }
+
+    async delete(id) {
+        await RentalSchema.deleteOne({ _id: id });
+    }
 }
 
 module.exports = new RentalRepository;
