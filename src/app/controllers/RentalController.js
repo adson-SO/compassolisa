@@ -4,11 +4,13 @@ const axios = require('axios').default;
 class RentalController {
     async create(req, res) {
         const payload = req.body;
-        const endereco = payload.endereco.find(element => element !== undefined);
-        const { cep } = endereco;
-        const { data } = await axios.get(`https://viacep.com.br/ws/${cep}/json`);
-        const { logradouro, bairro, localidade, uf } = data;
-        console.log(Object.assign(endereco, { logradouro: logradouro, bairro: bairro, localidade: localidade, uf: uf }));
+        const iterator = payload.endereco.values();
+        for (const endereco of iterator) {
+            const { cep } = endereco;
+            const { data } = await axios.get(`https://viacep.com.br/ws/${cep}/json`);
+            const { logradouro, bairro, localidade, uf } = data;
+            Object.assign(endereco, { logradouro: logradouro, bairro: bairro, localidade: localidade, uf: uf });
+        }
         try {
             const result = await RentalService.create(payload);
             res.status(201).json(result);
