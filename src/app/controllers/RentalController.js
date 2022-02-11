@@ -48,7 +48,11 @@ class RentalController {
         const payload = req.body;
         try {
             const result = await RentalService.update(id, payload);
-            res.status(200).json(result);
+            if (result === null) {
+                res.status(404).json({ message: 'Not Found' });
+            } else {
+                res.status(200).json(result);
+            }
         } catch (err) {
             res.status(400).json(err);
         }
