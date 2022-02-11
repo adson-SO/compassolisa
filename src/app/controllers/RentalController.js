@@ -57,6 +57,10 @@ class RentalController {
     async delete(req, res) {
         const { id } = req.params;
         try {
+            const rental = await RentalService.findById(id);
+            if (rental === null) {
+                res.status(404).json({ message: 'Not Found' });
+            }
             await RentalService.delete(id);
             res.status(204).end();
         } catch (err) {
