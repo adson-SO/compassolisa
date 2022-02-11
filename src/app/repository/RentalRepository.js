@@ -27,7 +27,7 @@ class RentalRepository {
     }
 
     async delete(id) {
-        await RentalSchema.deleteOne({ _id: id });
+        await RentalSchema.findByIdAndDelete(id);
     }
 }
 
