@@ -105,7 +105,7 @@ npm start
 ```json
 {
   "nome": "joaozinho ciclano",
-  "cpf": "13114786049",
+  "cpf": "131.147.860-49",
   "data_nascimento": "03/03/2021",
   "email": "joazinho@email.com",
   "senha": "123456",
