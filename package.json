@@ -4,9 +4,9 @@
   "description": "api rest para empresa de aluguel de carros de luxo e semi luxo.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "lint": "eslint . --fix",
-    "dev": "nodemon ./src/server.js",
+    "dev": "nodemon ./src/server.js --ignore __tests__",
     "start": "node ./src/server.js"
   },
   "repository": {
@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "eslint": "^8.7.0",
+    "jest": "^27.5.1",
     "nodemon": "^2.0.15"
   }
 }
