@@ -4,6 +4,7 @@ const findValidation = require('../app/validations/car/find');
 const findByIdValidation = require('../app/validations/car/findById');
 const updateValidation = require('../app/validations/car/update');
 const deleteValidation = require('../app/validations/car/delete');
+const updateAcessorioValidation = require('../app/validations/car/updateAcessorio');
 
 module.exports = (server, routes, prefix = '/api/v1/car') => {
   routes.post('/', createValidation, CarController.create);
@@ -11,6 +12,6 @@ module.exports = (server, routes, prefix = '/api/v1/car') => {
   routes.delete('/:id', deleteValidation, CarController.delete);
   routes.put('/:id', updateValidation, CarController.update);
   routes.get('/:id', findByIdValidation, CarController.findById);
-  routes.patch('/:id/acessorios/:descricaoId', CarController.updateAcessorio);
+  routes.patch('/:id/acessorios/:descricaoId', updateAcessorioValidation, CarController.updateAcessorio);
   server.use(prefix, routes);
 };
