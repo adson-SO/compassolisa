@@ -8,7 +8,7 @@ const deleteValidation = require('../app/validations/people/delete');
 module.exports = (server, routes, prefix = '/api/v1/people') => {
   routes.post('/', createValidation, PeopleController.create);
   routes.get('/', findValidation, PeopleController.find);
-  routes.delete('/:id', PeopleController.delete);
+  routes.delete('/:id', deleteValidation, PeopleController.delete);
   routes.put('/:id', updateValidation, PeopleController.update);
   routes.get('/:id', findByIdValidation, PeopleController.findById);
   server.use(prefix, routes);
