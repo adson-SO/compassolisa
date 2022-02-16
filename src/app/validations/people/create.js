@@ -6,7 +6,7 @@ const birthDate = new Date(Date.now() - 1000 * 60 * 60 * 24 * 365 * 18);
 module.exports = async (req, res, next) => {
   try {
     const schema = Joi.object({
-      nome: Joi.string().min(3).required(),
+      nome: Joi.string().min(3).trim().required(),
       cpf: Joi.string()
         .length(14)
         .custom((value, helpers) => {
@@ -18,7 +18,7 @@ module.exports = async (req, res, next) => {
         .required(),
       data_nascimento: Joi.date().format('DD/MM/YYYY').raw().max(birthDate).required(),
       email: Joi.string().email().required(),
-      senha: Joi.string().min(6).required(),
+      senha: Joi.string().min(6).trim().required(),
       habilitado: Joi.string().valid('sim', 'não').required()
     });
 
