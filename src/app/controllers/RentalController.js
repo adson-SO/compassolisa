@@ -1,5 +1,5 @@
-const RentalService = require('../services/RentalService');
 const axios = require('axios').default;
+const RentalService = require('../services/RentalService');
 
 class RentalController {
   async create(req, res) {
@@ -12,7 +12,14 @@ class RentalController {
       Object.assign(endereco, { logradouro, bairro, localidade, uf });
     }
     try {
-      const result = await RentalService.create(payload);
+      const rental = await RentalService.create(payload);
+      const result = {
+        _id: rental._id,
+        nome: rental.nome,
+        cnpj: rental.cnpj,
+        atividades: rental.atividades,
+        endereco: rental.endereco
+      };
       res.status(201).json(result);
     } catch (err) {
       res.status(400).json(err);

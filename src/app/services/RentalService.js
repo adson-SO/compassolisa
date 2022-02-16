@@ -2,14 +2,7 @@ const RentalRepository = require('../repository/RentalRepository');
 
 class RentalService {
   async create(payload) {
-    const rental = await RentalRepository.create(payload);
-    const result = {
-      _id: rental._id,
-      nome: rental.nome,
-      cnpj: rental.cnpj,
-      atividades: rental.atividades,
-      endereco: rental.endereco
-    };
+    const result = await RentalRepository.create(payload);
     return result;
   }
 

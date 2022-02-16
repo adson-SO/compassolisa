@@ -5,7 +5,15 @@ class CarController {
     const payload = req.body;
     try {
       const car = await CarService.create(payload);
-      res.status(201).json(car);
+      const result = {
+        _id: car._id,
+        modelo: car.modelo,
+        cor: car.cor,
+        ano: car.ano,
+        acessorios: car.acessorios,
+        quantidadePassageiros: car.quantidadePassageiros
+      };
+      res.status(201).json(result);
     } catch (err) {
       res.status(400).json({ message: err.message });
     }

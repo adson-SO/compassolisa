@@ -5,7 +5,16 @@ class PeopleController {
     const payload = req.body;
     try {
       const people = await PeopleService.create(payload);
-      res.status(201).json(people);
+      const result = {
+        _id: people._id,
+        nome: people.nome,
+        cpf: people.cpf,
+        data_nascimento: people.data_nascimento,
+        email: people.email,
+        senha: people.senha,
+        habilitado: people.habilitado
+      };
+      res.status(201).json(result);
     } catch (err) {
       res.status(400).json({ message: err.message });
     }
