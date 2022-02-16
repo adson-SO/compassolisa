@@ -5,7 +5,7 @@ const birthDate = new Date((Date.now()) - (1000 * 60 * 60 * 24 * 365 * 18));
 
 module.exports = async (req, res, next) => {
   try {
-    const schema = Joi.object({
+    const bodySchema = Joi.object({
       nome: Joi.string().min(3),
       cpf: Joi.string().length(14).custom((value, helpers) => {
         if(cpfValidate(value) === false) {
@@ -20,8 +20,14 @@ module.exports = async (req, res, next) => {
       habilitado: Joi.string().valid('sim', 'não')
     });
 
-    const { error } = await schema.validate(req.body, { abortEarly: true });
-    if(error) throw error;
+    const paramSchema = Joi.object({
+      id: Joi.string().length(24).required()
+    });
+
+    const bodyResult = await bodySchema.validate(req.body, { abortEarly: true });
+    const paramsResult = await paramSchema.validate(req.params, { abortEarly: true });
+    if(bodyResult.error) throw bodyResult.error;
+    if(paramsResult.error) throw paramsResult.error;
     return next();
   } catch (err) {
     return res.status(400).json({
