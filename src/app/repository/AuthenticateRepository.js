@@ -7,4 +7,4 @@ class AuthenticateRepository {
   }
 }
 
-module.exports = new AuthenticateRepository;
+module.exports = new AuthenticateRepository();

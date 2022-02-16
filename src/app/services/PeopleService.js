@@ -16,7 +16,7 @@ class PeopleService {
   }
 
   async find(queryParams) {
-    if(Object.keys(queryParams).length === 0) queryParams = {};
+    if (Object.keys(queryParams).length === 0) queryParams = {};
     const people = await PeopleRepository.find(queryParams);
     return people;
   }
@@ -36,4 +36,4 @@ class PeopleService {
   }
 }
 
-module.exports = new PeopleService;
+module.exports = new PeopleService();

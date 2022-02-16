@@ -9,7 +9,17 @@ class PeopleRepository {
   async find(queryParams) {
     const result = await PeopleSchema.paginate(queryParams, {
       select: '_id nome cpf data_nascimento email senha habilitado',
-      customLabels: { docs: 'pessoas', totalDocs: 'total', totalPages: 'offsets', page: 'offset', pagingCounter: false, hasPrevPage: false, hasNextPage: false, prevPage: false, nextPage: false },
+      customLabels: {
+        docs: 'pessoas',
+        totalDocs: 'total',
+        totalPages: 'offsets',
+        page: 'offset',
+        pagingCounter: false,
+        hasPrevPage: false,
+        hasNextPage: false,
+        prevPage: false,
+        nextPage: false
+      },
       limit: queryParams.limit || 10,
       page: queryParams.offset || 1
     });
@@ -31,4 +41,4 @@ class PeopleRepository {
   }
 }
 
-module.exports = new PeopleRepository;
+module.exports = new PeopleRepository();

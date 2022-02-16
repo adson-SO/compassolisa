@@ -25,7 +25,7 @@ class PeopleController {
     const peopleId = req.params.id;
     try {
       const people = await PeopleService.findById(peopleId);
-      if(people === null) {
+      if (people === null) {
         res.status(404).json({ message: 'Not Found' });
       }
       await PeopleService.delete(peopleId);
@@ -40,7 +40,7 @@ class PeopleController {
     const newData = req.body;
     try {
       const updatedPeople = await PeopleService.update(peopleId, newData);
-      if(updatedPeople === null) {
+      if (updatedPeople === null) {
         res.status(404).json({ message: 'Not Found' });
       } else {
         res.status(200).json(updatedPeople);
@@ -54,7 +54,7 @@ class PeopleController {
     const peopleId = req.params.id;
     try {
       const people = await PeopleService.findById(peopleId);
-      if(people === null) {
+      if (people === null) {
         res.status(404).json({ message: 'Not Found' });
       } else {
         res.status(200).json(people);
@@ -65,4 +65,4 @@ class PeopleController {
   }
 }
 
-module.exports = new PeopleController;
+module.exports = new PeopleController();

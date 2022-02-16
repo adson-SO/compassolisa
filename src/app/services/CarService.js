@@ -15,7 +15,7 @@ class CarService {
   }
 
   async find(queryParams) {
-    if(Object.keys(queryParams).length === 0) queryParams = {};
+    if (Object.keys(queryParams).length === 0) queryParams = {};
     const cars = await CarRepository.find(queryParams);
     return cars;
   }

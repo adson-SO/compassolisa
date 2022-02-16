@@ -1,19 +1,20 @@
 const Joi = require('joi').extend(require('@joi/date'));
 const cpfValidate = require('../../../helpers/cpfValidate');
 
-const birthDate = new Date((Date.now()) - (1000 * 60 * 60 * 24 * 365 * 18));
+const birthDate = new Date(Date.now() - 1000 * 60 * 60 * 24 * 365 * 18);
 
 module.exports = async (req, res, next) => {
   try {
     const bodySchema = Joi.object({
       nome: Joi.string().min(3),
-      cpf: Joi.string().length(14).custom((value, helpers) => {
-        if(cpfValidate(value) === false) {
-          return helpers.message('CPF is invalid');
-        } else {
+      cpf: Joi.string()
+        .length(14)
+        .custom((value, helpers) => {
+          if (cpfValidate(value) === false) {
+            return helpers.message('CPF is invalid');
+          }
           return true;
-        }
-      }),
+        }),
       data_nascimento: Joi.date().format('DD/MM/YYYY').raw().max(birthDate),
       email: Joi.string().email(),
       senha: Joi.string().min(6),
@@ -26,8 +27,8 @@ module.exports = async (req, res, next) => {
 
     const bodyResult = await bodySchema.validate(req.body, { abortEarly: true });
     const paramsResult = await paramSchema.validate(req.params, { abortEarly: true });
-    if(bodyResult.error) throw bodyResult.error;
-    if(paramsResult.error) throw paramsResult.error;
+    if (bodyResult.error) throw bodyResult.error;
+    if (paramsResult.error) throw paramsResult.error;
     return next();
   } catch (err) {
     return res.status(400).json({

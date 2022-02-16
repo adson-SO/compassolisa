@@ -4,7 +4,7 @@ const people = require('./people.router');
 const authenticate = require('./authenticate.router');
 const rental = require('./rental.router');
 
-module.exports = server => {
+module.exports = (server) => {
   server.use((req, res, next) => {
     car(server, new Router());
     people(server, new Router());

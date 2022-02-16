@@ -1,13 +1,13 @@
-const AuthenticateService = require('../services/AuthenticateService');
 const jwt = require('jsonwebtoken');
+const AuthenticateService = require('../services/AuthenticateService');
 const authConfig = require('../../config/auth.json');
 
 class AuthenticateController {
   async authenticate(req, res) {
-    const email = req.body.email;
-    const senha = req.body.senha;
+    const { email } = req.body;
+    const { senha } = req.body;
     try {
-      const people = await AuthenticateService.findOne({ email: email, senha: senha });
+      const people = await AuthenticateService.findOne({ email, senha });
       if (!people) {
         res.status(404).json({ message: 'Not Found' });
       }
@@ -29,4 +29,4 @@ class AuthenticateController {
   }
 }
 
-module.exports = new AuthenticateController;
+module.exports = new AuthenticateController();

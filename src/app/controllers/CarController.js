@@ -25,7 +25,7 @@ class CarController {
     const carId = req.params.id;
     try {
       const car = await CarService.findById(carId);
-      if(car === null) {
+      if (car === null) {
         res.status(404).json({ message: 'Not Found' });
       }
       await CarService.delete(carId);
@@ -40,7 +40,7 @@ class CarController {
     const newData = req.body;
     try {
       const car = await CarService.update(carId, newData);
-      if(car === null) {
+      if (car === null) {
         res.status(404).json({ message: 'Not Found' });
       } else {
         res.status(200).json(car);
@@ -54,7 +54,7 @@ class CarController {
     const carId = req.params.id;
     try {
       const car = await CarService.findById(carId);
-      if(car === null) {
+      if (car === null) {
         res.status(404).json({ message: 'Not Found' });
       } else {
         res.status(200).json(car);
@@ -66,7 +66,7 @@ class CarController {
 
   async updateAcessorio(req, res) {
     const carId = req.params.id;
-    const descricaoId = req.params.descricaoId;
+    const { descricaoId } = req.params;
     const newData = req.body;
     try {
       const result = await CarService.updateAcessorio(carId, descricaoId, newData);

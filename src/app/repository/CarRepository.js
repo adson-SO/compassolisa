@@ -9,7 +9,17 @@ class CarRepository {
   async find(queryParams) {
     const cars = await CarSchema.paginate(queryParams, {
       select: '_id modelo cor ano acessorios quantidadePassageiros',
-      customLabels: { docs: 'veiculos', totalDocs: 'total', totalPages: 'offsets', page: 'offset', pagingCounter: false, hasPrevPage: false, hasNextPage: false, prevPage: false, nextPage: false },
+      customLabels: {
+        docs: 'veiculos',
+        totalDocs: 'total',
+        totalPages: 'offsets',
+        page: 'offset',
+        pagingCounter: false,
+        hasPrevPage: false,
+        hasNextPage: false,
+        prevPage: false,
+        nextPage: false
+      },
       limit: queryParams.limit || 10,
       page: queryParams.offset || 1
     });
@@ -36,8 +46,10 @@ class CarRepository {
       {
         $set: {
           'acessorios.$.descricao': newData.descricao
-      } },
-      { returnDocument: 'after' });
+        }
+      },
+      { returnDocument: 'after' }
+    );
     return result;
   }
 }

@@ -6,10 +6,10 @@ const updateValidation = require('../app/validations/rental/update');
 const deleteValidation = require('../app/validations/rental/delete');
 
 module.exports = (server, routes, prefix = '/api/v1/rental') => {
-    routes.post('/', createValidation, RentalController.create);
-    routes.get('/', findValidation, RentalController.find);
-    routes.get('/:id', findByIdValidation, RentalController.findById);
-    routes.put('/:id', updateValidation, RentalController.update);
-    routes.delete('/:id', deleteValidation, RentalController.delete);
-    server.use(prefix, routes);
+  routes.post('/', createValidation, RentalController.create);
+  routes.get('/', findValidation, RentalController.find);
+  routes.get('/:id', findByIdValidation, RentalController.findById);
+  routes.put('/:id', updateValidation, RentalController.update);
+  routes.delete('/:id', deleteValidation, RentalController.delete);
+  server.use(prefix, routes);
 };
