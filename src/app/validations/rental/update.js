@@ -4,7 +4,7 @@ const cnpjValidate = require('../../../helpers/cnpjValidate');
 module.exports = async (req, res, next) => {
   try {
     const schema = Joi.object({
-      nome: Joi.string().min(5),
+      nome: Joi.string().min(5).trim(),
       cnpj: Joi.string()
         .length(18)
         .custom((value, helpers) => {
@@ -13,14 +13,14 @@ module.exports = async (req, res, next) => {
           }
           return true;
         }),
-      atividades: Joi.string().min(10),
+      atividades: Joi.string().min(10).trim(),
       endereco: Joi.array()
         .min(1)
         .items(
           Joi.object({
-            cep: Joi.string().length(9),
-            complemento: Joi.string().min(3),
-            number: Joi.string().min(1),
+            cep: Joi.string().length(9).trim(),
+            complemento: Joi.string().min(3).trim(),
+            number: Joi.string().min(1).trim(),
             isFilial: Joi.boolean()
           })
         )
