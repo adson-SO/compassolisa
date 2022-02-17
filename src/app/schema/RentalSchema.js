@@ -2,22 +2,29 @@ const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
 const RentalSchema = mongoose.Schema({
-  nome: String,
+  nome: {
+    type: String,
+    required: true
+  },
   cnpj: {
     type: String,
-    unique: true
+    unique: true,
+    required: true
   },
-  atividades: String,
+  atividades: {
+    type: String,
+    required: true
+  },
   endereco: [
     {
-      cep: String,
+      cep: { type: String, unique: true, required: true },
       logradouro: String,
-      complemento: String,
+      complemento: { type: String, required: false },
       bairro: String,
-      number: String,
+      number: { type: String, required: true },
       localidade: String,
       uf: String,
-      isFilial: Boolean,
+      isFilial: { type: Boolean, required: true },
       _id: false
     }
   ]

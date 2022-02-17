@@ -2,20 +2,32 @@ const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
 const PeopleSchema = mongoose.Schema({
-  nome: String,
+  nome: {
+    type: String,
+    required: true
+  },
   cpf: {
     type: String,
-    unique: true
+    unique: true,
+    required: true
   },
-  data_nascimento: String,
+  data_nascimento: {
+    type: String,
+    required: true
+  },
   email: {
     type: String,
-    unique: true
+    unique: true,
+    required: true
   },
-  senha: String,
+  senha: {
+    type: String,
+    required: true
+  },
   habilitado: {
     type: String,
-    enum: ['sim', 'não']
+    enum: ['sim', 'não'],
+    required: true
   }
 });
 
