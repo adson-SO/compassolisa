@@ -20,9 +20,9 @@ class CarController {
   }
 
   async find(req, res) {
-    const queryParams = req.query;
+    const { query } = req;
     try {
-      const cars = await CarService.find(queryParams);
+      const cars = await CarService.find(query);
       res.status(200).json(cars);
     } catch (err) {
       res.status(500).json({ message: err.message });
@@ -39,7 +39,7 @@ class CarController {
       await CarService.delete(carId);
       res.status(204).end();
     } catch (err) {
-      res.status(400).json({ message: err.message });
+      res.status(400).json(err);
     }
   }
 
