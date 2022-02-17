@@ -13,9 +13,9 @@ class CarController {
         acessorios: car.acessorios,
         quantidadePassageiros: car.quantidadePassageiros
       };
-      res.status(201).json(result);
+      return res.status(201).json(result);
     } catch (err) {
-      res.status(400).json({ message: err.message });
+      return res.status(400).json({ message: err.message });
     }
   }
 
@@ -23,9 +23,9 @@ class CarController {
     const { query } = req;
     try {
       const cars = await CarService.find(query);
-      res.status(200).json(cars);
+      return res.status(200).json(cars);
     } catch (err) {
-      res.status(500).json({ message: err.message });
+      return res.status(500).json({ message: err.message });
     }
   }
 
@@ -34,12 +34,12 @@ class CarController {
     try {
       const car = await CarService.findById(carId);
       if (car === null) {
-        res.status(404).json({ message: 'Not Found' });
+        return res.status(404).json({ message: 'Not Found' });
       }
       await CarService.delete(carId);
-      res.status(204).end();
+      return res.status(204).end();
     } catch (err) {
-      res.status(400).json(err);
+      return res.status(400).json(err);
     }
   }
 
@@ -49,12 +49,11 @@ class CarController {
     try {
       const car = await CarService.update(carId, newData);
       if (car === null) {
-        res.status(404).json({ message: 'Not Found' });
-      } else {
-        res.status(200).json(car);
+        return res.status(404).json({ message: 'Not Found' });
       }
+      return res.status(200).json(car);
     } catch (err) {
-      res.status(400).json({ message: err.message });
+      return res.status(400).json({ message: err.message });
     }
   }
 
@@ -63,24 +62,22 @@ class CarController {
     try {
       const car = await CarService.findById(carId);
       if (car === null) {
-        res.status(404).json({ message: 'Not Found' });
-      } else {
-        res.status(200).json(car);
+        return res.status(404).json({ message: 'Not Found' });
       }
+      return res.status(200).json(car);
     } catch (err) {
-      res.status(400).json({ message: err.message });
+      return res.status(400).json({ message: err.message });
     }
   }
 
   async updateAcessorio(req, res) {
-    const carId = req.params.id;
-    const { descricaoId } = req.params;
+    const { id, descricaoId } = req.params;
     const newData = req.body;
     try {
-      const result = await CarService.updateAcessorio(carId, descricaoId, newData);
-      res.status(200).json(result);
+      const result = await CarService.updateAcessorio(id, descricaoId, newData);
+      return res.status(200).json(result);
     } catch (err) {
-      res.status(400).json({ message: err.message });
+      return res.status(400).json({ message: err.message });
     }
   }
 }
