@@ -1,30 +1,32 @@
 const jwt = require('jsonwebtoken');
 const AuthenticateService = require('../services/AuthenticateService');
-const authConfig = require('../../config/auth.json');
+require('dotenv').config();
 
 class AuthenticateController {
   async authenticate(req, res) {
-    const { email } = req.body;
-    const { senha } = req.body;
+    const { email, senha } = req.body;
     try {
       const people = await AuthenticateService.findOne({ email, senha });
       if (!people) {
-        res.status(404).json({ message: 'Not Found' });
+        return res.status(404).json({ message: 'Not Found' });
       }
 
-      const token = jwt.sign({ id: people._id }, authConfig.secret, {
+      const token = jwt.sign({ id: people._id }, process.env.AUTH_SECRET, {
         expiresIn: 86400
       });
 
-      res.status(200).json({
-        pessoa: {
-          email: people.email,
-          habilitado: people.habilitado
-        },
-        token
-      });
+      return res
+        .setHeader('Token', token)
+        .status(200)
+        .json({
+          pessoa: {
+            email: people.email,
+            habilitado: people.habilitado
+          },
+          token
+        });
     } catch (err) {
-      res.status(400).json({ message: err.message });
+      return res.status(400).json({ message: err.message });
     }
   }
 }
