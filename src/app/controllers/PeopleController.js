@@ -14,9 +14,9 @@ class PeopleController {
         senha: people.senha,
         habilitado: people.habilitado
       };
-      res.status(201).json(result);
+      return res.status(201).json(result);
     } catch (err) {
-      res.status(400).json({ message: err.message });
+      return res.status(400).json({ message: err.message });
     }
   }
 
@@ -24,9 +24,9 @@ class PeopleController {
     const queryParams = req.query;
     try {
       const result = await PeopleService.find(queryParams);
-      res.status(200).json(result);
+      return res.status(200).json(result);
     } catch (err) {
-      res.status(500).json({ message: err.message });
+      return res.status(500).json({ message: err.message });
     }
   }
 
@@ -35,12 +35,12 @@ class PeopleController {
     try {
       const people = await PeopleService.findById(peopleId);
       if (people === null) {
-        res.status(404).json({ message: 'Not Found' });
+        return res.status(404).json({ message: 'Not Found' });
       }
       await PeopleService.delete(peopleId);
-      res.status(204).end();
+      return res.status(204).end();
     } catch (err) {
-      res.status(400).json({ message: err.message });
+      return res.status(400).json({ message: err.message });
     }
   }
 
@@ -50,12 +50,11 @@ class PeopleController {
     try {
       const updatedPeople = await PeopleService.update(peopleId, newData);
       if (updatedPeople === null) {
-        res.status(404).json({ message: 'Not Found' });
-      } else {
-        res.status(200).json(updatedPeople);
+        return res.status(404).json({ message: 'Not Found' });
       }
+      return res.status(200).json(updatedPeople);
     } catch (err) {
-      res.status(400).json({ message: err.message });
+      return res.status(400).json({ message: err.message });
     }
   }
 
@@ -64,12 +63,11 @@ class PeopleController {
     try {
       const people = await PeopleService.findById(peopleId);
       if (people === null) {
-        res.status(404).json({ message: 'Not Found' });
-      } else {
-        res.status(200).json(people);
+        return res.status(404).json({ message: 'Not Found' });
       }
+      return res.status(200).json(people);
     } catch (err) {
-      res.status(400).json({ message: err.message });
+      return res.status(400).json({ message: err.message });
     }
   }
 }
