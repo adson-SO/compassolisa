@@ -20,9 +20,9 @@ class RentalController {
         atividades: rental.atividades,
         endereco: rental.endereco
       };
-      res.status(201).json(result);
+      return res.status(201).json(result);
     } catch (err) {
-      res.status(400).json(err);
+      return res.status(400).json(err);
     }
   }
 
@@ -30,9 +30,9 @@ class RentalController {
     const queryParams = req.query;
     try {
       const result = await RentalService.find(queryParams);
-      res.status(200).json(result);
+      return res.status(200).json(result);
     } catch (err) {
-      res.status(500).json(err);
+      return res.status(500).json(err);
     }
   }
 
@@ -41,12 +41,11 @@ class RentalController {
     try {
       const result = await RentalService.findById(id);
       if (result === null) {
-        res.status(404).json({ message: 'Not Found' });
-      } else {
-        res.status(200).json(result);
+        return res.status(404).json({ message: 'Not Found' });
       }
+      return res.status(200).json(result);
     } catch (err) {
-      res.status(400).json(err);
+      return res.status(400).json(err);
     }
   }
 
@@ -56,12 +55,11 @@ class RentalController {
     try {
       const result = await RentalService.update(id, payload);
       if (result === null) {
-        res.status(404).json({ message: 'Not Found' });
-      } else {
-        res.status(200).json(result);
+        return res.status(404).json({ message: 'Not Found' });
       }
+      return res.status(200).json(result);
     } catch (err) {
-      res.status(400).json(err);
+      return res.status(400).json(err);
     }
   }
 
@@ -70,12 +68,12 @@ class RentalController {
     try {
       const rental = await RentalService.findById(id);
       if (rental === null) {
-        res.status(404).json({ message: 'Not Found' });
+        return res.status(404).json({ message: 'Not Found' });
       }
       await RentalService.delete(id);
-      res.status(204).end();
+      return res.status(204).end();
     } catch (err) {
-      res.status(400).json(err);
+      return res.status(400).json(err);
     }
   }
 }
