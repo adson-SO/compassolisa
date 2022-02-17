@@ -1,7 +1,15 @@
 const RentalRepository = require('../repository/RentalRepository');
+const ViaCepRepository = require('../repository/ViaCepRepository');
 
 class RentalService {
   async create(payload) {
+    const iterator = payload.endereco.values();
+    for (const endereco of iterator) {
+      const { cep } = endereco;
+      const data = await ViaCepRepository.find(cep);
+      const { logradouro, bairro, localidade, uf } = data;
+      Object.assign(endereco, { logradouro, bairro, localidade, uf });
+    }
     const result = await RentalRepository.create(payload);
     return result;
   }

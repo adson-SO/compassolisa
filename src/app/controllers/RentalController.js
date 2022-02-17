@@ -1,16 +1,8 @@
-const axios = require('axios').default;
 const RentalService = require('../services/RentalService');
 
 class RentalController {
   async create(req, res) {
     const payload = req.body;
-    const iterator = payload.endereco.values();
-    for (const endereco of iterator) {
-      const { cep } = endereco;
-      const { data } = await axios.get(`https://viacep.com.br/ws/${cep}/json`);
-      const { logradouro, bairro, localidade, uf } = data;
-      Object.assign(endereco, { logradouro, bairro, localidade, uf });
-    }
     try {
       const rental = await RentalService.create(payload);
       const result = {
