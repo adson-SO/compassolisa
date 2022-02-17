@@ -6,8 +6,8 @@ class PeopleRepository {
     return people;
   }
 
-  async find(queryParams) {
-    const result = await PeopleSchema.paginate(queryParams, {
+  async find(query) {
+    const result = await PeopleSchema.paginate(query, {
       select: '_id nome cpf data_nascimento email senha habilitado',
       customLabels: {
         docs: 'pessoas',
@@ -20,8 +20,8 @@ class PeopleRepository {
         prevPage: false,
         nextPage: false
       },
-      limit: queryParams.limit || 10,
-      page: queryParams.offset || 1
+      limit: query.limit || 10,
+      page: query.offset || 1
     });
     return result;
   }

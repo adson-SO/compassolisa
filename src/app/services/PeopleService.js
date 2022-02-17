@@ -6,9 +6,8 @@ class PeopleService {
     return result;
   }
 
-  async find(queryParams) {
-    if (Object.keys(queryParams).length === 0) queryParams = {};
-    const people = await PeopleRepository.find(queryParams);
+  async find(query) {
+    const people = await PeopleRepository.find(query);
     return people;
   }
 
