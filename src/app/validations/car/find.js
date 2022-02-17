@@ -6,7 +6,9 @@ module.exports = async (req, res, next) => {
       modelo: Joi.string().min(3),
       cor: Joi.string().min(3),
       ano: Joi.date().raw().less('2023').min('1950'),
-      quantidadePassageiros: Joi.number().integer()
+      quantidadePassageiros: Joi.number().integer(),
+      limit: Joi.number().integer(),
+      offset: Joi.number().integer()
     });
 
     const { error } = await schema.validate(req.query, { abortEarly: true });

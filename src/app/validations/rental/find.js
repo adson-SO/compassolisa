@@ -13,7 +13,9 @@ module.exports = async (req, res, next) => {
           }
           return true;
         }),
-      atividades: Joi.string().min(10)
+      atividades: Joi.string().min(10),
+      limit: Joi.number().integer(),
+      offset: Joi.number().integer()
     });
 
     const { error } = await schema.validate(req.query, { abortEarly: true });
