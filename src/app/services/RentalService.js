@@ -6,9 +6,8 @@ class RentalService {
     return result;
   }
 
-  async find(queryParams) {
-    if (Object.keys(queryParams).length === 0) queryParams = {};
-    const result = await RentalRepository.find(queryParams);
+  async find(query) {
+    const result = await RentalRepository.find(query);
     return result;
   }
 

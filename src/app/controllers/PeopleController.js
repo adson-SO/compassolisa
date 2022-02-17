@@ -21,7 +21,7 @@ class PeopleController {
   }
 
   async find(req, res) {
-    const { query } = req.query;
+    const { query } = req;
     try {
       const result = await PeopleService.find(query);
       return res.status(200).json(result);

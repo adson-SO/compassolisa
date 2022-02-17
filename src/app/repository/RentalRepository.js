@@ -6,8 +6,8 @@ class RentalRepository {
     return result;
   }
 
-  async find(queryParams) {
-    const result = await RentalSchema.paginate(queryParams, {
+  async find(query) {
+    const result = await RentalSchema.paginate(query, {
       select: '_id nome cnpj atividades endereco',
       customLabels: {
         docs: 'locadoras',
@@ -20,8 +20,8 @@ class RentalRepository {
         prevPage: false,
         nextPage: false
       },
-      limit: queryParams.limit || 10,
-      page: queryParams.offset || 1
+      limit: query.limit || 10,
+      page: query.offset || 1
     });
     return result;
   }

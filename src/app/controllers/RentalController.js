@@ -27,9 +27,9 @@ class RentalController {
   }
 
   async find(req, res) {
-    const queryParams = req.query;
+    const { query } = req;
     try {
-      const result = await RentalService.find(queryParams);
+      const result = await RentalService.find(query);
       return res.status(200).json(result);
     } catch (err) {
       return res.status(500).json(err);
