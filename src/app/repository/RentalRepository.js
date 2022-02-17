@@ -37,7 +37,7 @@ class RentalRepository {
   }
 
   async delete(id) {
-    await RentalSchema.findByIdAndDelete(id);
+    return RentalSchema.findByIdAndDelete(id);
   }
 }
 

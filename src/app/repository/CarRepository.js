@@ -6,8 +6,8 @@ class CarRepository {
     return car;
   }
 
-  async find(queryParams) {
-    const cars = await CarSchema.paginate(queryParams, {
+  async find(query) {
+    const cars = await CarSchema.paginate(query, {
       select: '_id modelo cor ano acessorios quantidadePassageiros',
       customLabels: {
         docs: 'veiculos',
@@ -20,14 +20,14 @@ class CarRepository {
         prevPage: false,
         nextPage: false
       },
-      limit: queryParams.limit || 10,
-      page: queryParams.offset || 1
+      limit: query.limit || 10,
+      page: query.offset || 1
     });
     return cars;
   }
 
   async delete(id) {
-    await CarSchema.findByIdAndDelete(id);
+    return CarSchema.findByIdAndDelete(id);
   }
 
   async update(id, newData) {

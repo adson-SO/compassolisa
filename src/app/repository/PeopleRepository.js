@@ -27,7 +27,7 @@ class PeopleRepository {
   }
 
   async delete(id) {
-    await PeopleSchema.findByIdAndDelete(id);
+    return PeopleSchema.findByIdAndDelete(id);
   }
 
   async update(id, newData) {
