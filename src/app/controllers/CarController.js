@@ -51,7 +51,15 @@ class CarController {
       if (car === null) {
         return res.status(404).json({ description: 'Not Found', name: 'Car does not exist in the database' });
       }
-      return res.status(200).json(car);
+      const result = {
+        _id: car._id,
+        modelo: car.modelo,
+        cor: car.cor,
+        ano: car.ano,
+        acessorios: car.acessorios,
+        quantidadePassageiros: car.quantidadePassageiros
+      };
+      return res.status(200).json(result);
     } catch (err) {
       return res.status(400).json({ description: err.name, name: err.message });
     }
