@@ -271,6 +271,62 @@ paths:
           content:
             application/json:
               example: Error Message
+  /car/{_id}/acessorios/{descricaoId}:
+    patch:
+      summary: Atualiza um acessório através de seu id
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: descricaoId
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                descricao:
+                  type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  modelo:
+                    type: string
+                  cor:
+                    type: string
+                  ano:
+                    type: string
+                  acessorios:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        descricao:
+                          type: string
+                        _id:
+                          type: string
+                  quantidadePassageiros:
+                    type: number
+                  __v:
+                    type: number
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              example: Error Message
   /people:
     post:
       summary: Cadastra nova pessoa
@@ -558,4 +614,326 @@ paths:
           description: Bad Request
           content:
             application/json:
-              example: Error Message          
+              example: Error Message  
+  /rental:
+    post:
+      summary: Cadastra nova locadora
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                cnpj:
+                  type: string
+                atividades:
+                  type: string
+                endereco:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      cep:
+                        type: string
+                      number:
+                        type: string
+                      isFilial:
+                        type: boolean
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  nome:
+                    type: string
+                  cnpj:
+                    type: string
+                  atividades:
+                    type: string
+                  endereco:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cep:
+                          type: string
+                        logradouro:
+                          type: string
+                        bairro:
+                          type: string
+                        number:
+                          type: string
+                        localidade:
+                          type: string
+                        uf:
+                          type: string
+                        isFilial:
+                          type: boolean
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              example: Error Message
+    get:
+      summary: Lista todas as locadoras
+      parameters:
+      - name: nome
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: cnpj
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: atividades
+        in: query
+        schema:
+          type: string
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  locadora:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                        nome:
+                          type: string
+                        cnpj:
+                          type: string
+                        atividades:
+                          type: string
+                        endereco:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              cep:
+                                type: string
+                              logradouro:
+                                type: string
+                              bairro:
+                                type: string
+                              number:
+                                type: string
+                              localidade:
+                                type: string
+                              uf:
+                                type: string
+                              isFilial:
+                                type: boolean
+                  total:
+                    type: number
+                  limit:
+                    type: number
+                  offsets:
+                    type: number
+                  offset:
+                    type: number
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              example: Error Message
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              example: Error Message
+  /rental/{_id}:
+    get:
+      summary: Busca uma locadora através de seu id
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  nome:
+                    type: string
+                  cnpj:
+                    type: string
+                  atividades:
+                    type: string
+                  endereco:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cep:
+                          type: string
+                        logradouro:
+                          type: string
+                        bairro:
+                          type: string
+                        number:
+                          type: string
+                        localidade:
+                          type: string
+                        uf:
+                          type: string
+                        isFilial:
+                          type: boolean 
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              example: Error Message                          
+        404:
+          description: Not Found
+          content: 
+            application/json:
+              example: Not Found
+    put:
+      summary: Atualiza uma locadora
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                cnpj:
+                  type: string
+                atividades:
+                  type: string
+                endereco:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      cep:
+                        type: string
+                      logradouro:
+                        type: string
+                      bairro:
+                        type: string
+                      number:
+                        type: string
+                      localidade:
+                        type: string
+                      uf:
+                        type: string
+                      isFilial:
+                        type: boolean
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  nome:
+                    type: string
+                  cnpj:
+                    type: string
+                  atividades:
+                    type: string
+                  endereco:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cep:
+                          type: string
+                        logradouro:
+                          type: string
+                        bairro:
+                          type: string
+                        number:
+                          type: string
+                        localidade:
+                          type: string
+                        uf:
+                          type: string
+                        isFilial:
+                          type: boolean
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              example: Error Message
+        404:
+          description: Not Found
+          content: 
+            application/json:
+              example: Not Found       
+    delete:
+      summary: Deleta uma locadora
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        204:
+          description: No Content
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              example: Error Message
+        404:
+          description: Not Found
+          content: 
+            application/json:
+              example: Not Found               
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
