@@ -8,7 +8,7 @@ class AuthenticateController {
     try {
       const people = await AuthenticateService.findOne({ email, senha });
       if (!people) {
-        return res.status(404).json({ message: 'Not Found' });
+        return res.status(404).json({ description: 'Not Found', name: 'ID does not exist in the database' });
       }
 
       const token = jwt.sign({ id: people._id }, process.env.AUTH_SECRET, {
@@ -26,7 +26,7 @@ class AuthenticateController {
           token
         });
     } catch (err) {
-      return res.status(400).json({ message: err.message });
+      return res.status(400).json({ description: err.name, name: err.message });
     }
   }
 }
