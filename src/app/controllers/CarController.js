@@ -15,7 +15,7 @@ class CarController {
       };
       return res.status(201).json(result);
     } catch (err) {
-      return res.status(400).json({ message: err.message });
+      return res.status(400).json({ description: err.name, name: err.message });
     }
   }
 
@@ -25,7 +25,7 @@ class CarController {
       const cars = await CarService.find(query);
       return res.status(200).json(cars);
     } catch (err) {
-      return res.status(500).json({ message: err.message });
+      return res.status(500).json({ description: err.name, name: err.message });
     }
   }
 
@@ -34,12 +34,12 @@ class CarController {
     try {
       const car = await CarService.findById(carId);
       if (car === null) {
-        return res.status(404).json({ message: 'Not Found' });
+        return res.status(404).json({ description: 'Not Found', name: 'Car does not exist in the database' });
       }
       await CarService.delete(carId);
       return res.status(204).end();
     } catch (err) {
-      return res.status(400).json(err);
+      return res.status(400).json({ description: err.name, name: err.message });
     }
   }
 
@@ -49,11 +49,11 @@ class CarController {
     try {
       const car = await CarService.update(carId, newData);
       if (car === null) {
-        return res.status(404).json({ message: 'Not Found' });
+        return res.status(404).json({ description: 'Not Found', name: 'Car does not exist in the database' });
       }
       return res.status(200).json(car);
     } catch (err) {
-      return res.status(400).json({ message: err.message });
+      return res.status(400).json({ description: err.name, name: err.message });
     }
   }
 
@@ -62,11 +62,11 @@ class CarController {
     try {
       const car = await CarService.findById(carId);
       if (car === null) {
-        return res.status(404).json({ message: 'Not Found' });
+        return res.status(404).json({ description: 'Not Found', name: 'Car does not exist in the database' });
       }
       return res.status(200).json(car);
     } catch (err) {
-      return res.status(400).json({ message: err.message });
+      return res.status(400).json({ description: err.name, name: err.message });
     }
   }
 
@@ -77,7 +77,7 @@ class CarController {
       const result = await CarService.updateAcessorio(id, descricaoId, newData);
       return res.status(200).json(result);
     } catch (err) {
-      return res.status(400).json({ message: err.message });
+      return res.status(400).json({ description: err.name, name: err.message });
     }
   }
 }
