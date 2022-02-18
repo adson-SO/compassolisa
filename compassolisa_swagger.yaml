@@ -57,13 +57,21 @@ paths:
                       properties:
                         descricao:
                           type: string
+                        _id:
+                          type: string
                   quantidadePassageiros:
                     type: number
         400:
           description: Bad Request
           content:
             application/json:
-              example: Error Message
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string
     get:
       summary: Lista todos os carros
       parameters:
@@ -135,11 +143,17 @@ paths:
                     type: number
                   offset: 
                     type: number
-        500:
-          description: Internal Server Error
+        400:
+          description: Bad Request
           content:
             application/json:
-              example: Error Message
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string
   /car/{_id}:
     get:
       summary: Busca um carro através de seu id
@@ -178,12 +192,24 @@ paths:
           description: Not Found
           content:
             application/json:
-              example: Not Found
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string                 
         400:
           description: Bad Request
           content:
             application/json:
-              example: Error Message      
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string     
     put:
       summary: Atualiza um carro
       parameters:
@@ -204,13 +230,6 @@ paths:
                   type: string
                 ano:
                   type: string
-                acessorios:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      descricao:
-                        type: string
                 quantidadePassageiros:
                   type: number
       responses:
@@ -238,18 +257,28 @@ paths:
                           type: string
                   quantidadePassageiros:
                     type: number
-                  __v:
-                    type: number
         404:
           description: Not Found
-          content: 
+          content:
             application/json:
-              example: Not Found
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string                 
         400:
           description: Bad Request
           content:
             application/json:
-              example: Error Message
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string
     delete:
       summary: Deleta um carro
       parameters:
@@ -263,14 +292,26 @@ paths:
           description: No Content
         404:
           description: Not Found
-          content: 
+          content:
             application/json:
-              example: Not Found
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string                 
         400:
           description: Bad Request
           content:
             application/json:
-              example: Error Message
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string
   /car/{_id}/acessorios/{descricaoId}:
     patch:
       summary: Atualiza um acessório através de seu id
@@ -320,13 +361,28 @@ paths:
                           type: string
                   quantidadePassageiros:
                     type: number
-                  __v:
-                    type: number
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string                 
         400:
           description: Bad Request
           content:
             application/json:
-              example: Error Message
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string
   /people:
     post:
       summary: Cadastra nova pessoa
@@ -374,7 +430,13 @@ paths:
           description: Bad Request
           content:
             application/json:
-              example: Error Message
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string
     get:
       summary: Lista todas as pessoas
       parameters:
@@ -448,11 +510,28 @@ paths:
                     type: number
                   offset:
                     type: number
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string
         500:
           description: Internal Server Error
           content:
             application/json:
-              example: Error Message
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string
   /people/{_id}:
     get:
       summary: Busca uma pessoa através de seu id
@@ -488,12 +567,24 @@ paths:
           description: Not Found
           content:
             application/json:
-              example: Not Found
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string                 
         400:
           description: Bad Request
           content:
             application/json:
-              example: Error Message
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string
     put:
       summary: Atualiza uma pessoa
       parameters:
@@ -542,18 +633,28 @@ paths:
                     type: string
                   habilitado:
                     type: string
-                  __v:
-                    type: number
         404:
           description: Not Found
           content:
             application/json:
-              example: Not Found
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string                 
         400:
           description: Bad Request
           content:
             application/json:
-              example: Error Message
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string
     delete:
       summary: Deleta uma pessoa
       parameters:
@@ -569,12 +670,24 @@ paths:
           description: Not Found
           content:
             application/json:
-              example: Not Found
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string                 
         400:
           description: Bad Request
           content:
             application/json:
-              example: Error Message
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string
   /authenticate:
     post:
       summary: Autentica usuário
@@ -609,12 +722,24 @@ paths:
           description: Not Found
           content:
             application/json:
-              example: Not Found
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string                 
         400:
           description: Bad Request
           content:
             application/json:
-              example: Error Message  
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string 
   /rental:
     post:
       summary: Cadastra nova locadora
@@ -638,6 +763,8 @@ paths:
                       cep:
                         type: string
                       number:
+                        type: string
+                      complemento:
                         type: string
                       isFilial:
                         type: boolean
@@ -665,6 +792,8 @@ paths:
                         cep:
                           type: string
                         logradouro:
+                          type: string
+                        complemento:
                           type: string
                         bairro:
                           type: string

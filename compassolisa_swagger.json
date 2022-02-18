@@ -80,6 +80,9 @@
                         "properties": {
                           "descricao": {
                             "type": "string"
+                          },
+                          "_id": {
+                            "type": "string"
                           }
                         }
                       }
@@ -96,7 +99,17 @@
             "description": "Bad Request",
             "content": {
               "application/json": {
-                "example": "Error Message"
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           }
@@ -213,11 +226,21 @@
               }
             }
           },
-          "500": {
-            "description": "Internal Server Error",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/json": {
-                "example": "Error Message"
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           }
@@ -280,7 +303,17 @@
             "description": "Bad Request",
             "content": {
               "application/json": {
-                "example": "Error Message"
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           },
@@ -288,7 +321,17 @@
             "description": "Not Found",
             "content": {
               "application/json": {
-                "example": "Not Found"
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           }
@@ -320,17 +363,6 @@
                   },
                   "ano": {
                     "type": "string"
-                  },
-                  "acessorios": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "descricao": {
-                          "type": "string"
-                        }
-                      }
-                    }
                   },
                   "quantidadePassageiros": {
                     "type": "number"
@@ -373,9 +405,6 @@
                     },
                     "quantidadePassageiros": {
                       "type": "number"
-                    },
-                    "__v": {
-                      "type": "number"
                     }
                   }
                 }
@@ -386,7 +415,17 @@
             "description": "Bad Request",
             "content": {
               "application/json": {
-                "example": "Error Message"
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           },
@@ -394,7 +433,17 @@
             "description": "Not Found",
             "content": {
               "application/json": {
-                "example": "Not Found"
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           }
@@ -420,7 +469,17 @@
             "description": "Bad Request",
             "content": {
               "application/json": {
-                "example": "Error Message"
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           },
@@ -428,7 +487,17 @@
             "description": "Not Found",
             "content": {
               "application/json": {
-                "example": "Not Found"
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           }
@@ -506,9 +575,6 @@
                     },
                     "quantidadePassageiros": {
                       "type": "number"
-                    },
-                    "__v": {
-                      "type": "number"
                     }
                   }
                 }
@@ -519,7 +585,35 @@
             "description": "Bad Request",
             "content": {
               "application/json": {
-                "example": "Error Message"
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           }
@@ -596,7 +690,17 @@
             "description": "Bad Request",
             "content": {
               "application/json": {
-                "example": "Error Message"
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           }
@@ -716,11 +820,39 @@
               }
             }
           },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "content": {
               "application/json": {
-                "example": "Error Message"
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           }
@@ -778,7 +910,17 @@
             "description": "Bad Request",
             "content": {
               "application/json": {
-                "example": "Error Message"
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           },
@@ -786,7 +928,17 @@
             "description": "Not Found",
             "content": {
               "application/json": {
-                "example": "Not Found"
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           }
@@ -861,9 +1013,6 @@
                     },
                     "habilitado": {
                       "type": "string"
-                    },
-                    "__v": {
-                      "type": "number"
                     }
                   }
                 }
@@ -874,7 +1023,17 @@
             "description": "Bad Request",
             "content": {
               "application/json": {
-                "example": "Error Message"
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           },
@@ -882,7 +1041,17 @@
             "description": "Not Found",
             "content": {
               "application/json": {
-                "example": "Not Found"
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           }
@@ -908,7 +1077,17 @@
             "description": "Bad Request",
             "content": {
               "application/json": {
-                "example": "Error Message"
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           },
@@ -916,7 +1095,17 @@
             "description": "Not Found",
             "content": {
               "application/json": {
-                "example": "Not Found"
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           }
@@ -974,7 +1163,17 @@
             "description": "Bad Request",
             "content": {
               "application/json": {
-                "example": "Error Message"
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           },
@@ -982,7 +1181,17 @@
             "description": "Not Found",
             "content": {
               "application/json": {
-                "example": "Not Found"
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           }
@@ -1016,6 +1225,9 @@
                           "type": "string"
                         },
                         "number": {
+                          "type": "string"
+                        },
+                        "complemento": {
                           "type": "string"
                         },
                         "isFilial": {
@@ -1058,6 +1270,9 @@
                             "type": "string"
                           },
                           "logradouro": {
+                            "type": "string"
+                          },
+                          "complemento": {
                             "type": "string"
                           },
                           "bairro": {
