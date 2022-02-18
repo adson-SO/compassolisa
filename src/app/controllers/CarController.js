@@ -34,7 +34,7 @@ class CarController {
     try {
       const car = await CarService.findById(carId);
       if (car === null) {
-        return res.status(404).json({ description: 'Not Found', name: 'Car does not exist in the database' });
+        return res.status(404).json({ description: 'Not Found', name: 'ID does not exist in the database' });
       }
       await CarService.delete(carId);
       return res.status(204).end();
@@ -49,7 +49,7 @@ class CarController {
     try {
       const car = await CarService.update(carId, newData);
       if (car === null) {
-        return res.status(404).json({ description: 'Not Found', name: 'Car does not exist in the database' });
+        return res.status(404).json({ description: 'Not Found', name: 'ID does not exist in the database' });
       }
       const result = {
         _id: car._id,
@@ -70,7 +70,7 @@ class CarController {
     try {
       const car = await CarService.findById(carId);
       if (car === null) {
-        return res.status(404).json({ description: 'Not Found', name: 'Car does not exist in the database' });
+        return res.status(404).json({ description: 'Not Found', name: 'ID does not exist in the database' });
       }
       return res.status(200).json(car);
     } catch (err) {
@@ -82,7 +82,18 @@ class CarController {
     const { id, descricaoId } = req.params;
     const newData = req.body;
     try {
-      const result = await CarService.updateAcessorio(id, descricaoId, newData);
+      const car = await CarService.updateAcessorio(id, descricaoId, newData);
+      if (car === null) {
+        return res.status(404).json({ description: 'Not Found', name: 'ID does not exist in the database' });
+      }
+      const result = {
+        _id: car._id,
+        modelo: car.modelo,
+        cor: car.cor,
+        ano: car.ano,
+        acessorios: car.acessorios,
+        quantidadePassageiros: car.quantidadePassageiros
+      };
       return res.status(200).json(result);
     } catch (err) {
       return res.status(400).json({ description: err.name, name: err.message });
