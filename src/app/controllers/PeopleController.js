@@ -16,7 +16,10 @@ class PeopleController {
       };
       return res.status(201).json(result);
     } catch (err) {
-      return res.status(400).json({ message: err.message });
+      return res.status(400).json({
+        description: 'Conflict',
+        name: `${Object.keys(err.keyValue)[0]} ${Object.values(err.keyValue)[0]} already in use`
+      });
     }
   }
 
@@ -26,7 +29,7 @@ class PeopleController {
       const result = await PeopleService.find(query);
       return res.status(200).json(result);
     } catch (err) {
-      return res.status(500).json({ message: err.message });
+      return res.status(500).json({ description: err.name, name: err.message });
     }
   }
 
@@ -35,12 +38,12 @@ class PeopleController {
     try {
       const people = await PeopleService.findById(peopleId);
       if (people === null) {
-        return res.status(404).json({ message: 'Not Found' });
+        return res.status(404).json({ description: 'Not Found', name: 'ID does not exist in the database' });
       }
       await PeopleService.delete(peopleId);
       return res.status(204).end();
     } catch (err) {
-      return res.status(400).json({ message: err.message });
+      return res.status(400).json({ description: err.name, name: err.message });
     }
   }
 
@@ -48,13 +51,22 @@ class PeopleController {
     const peopleId = req.params.id;
     const newData = req.body;
     try {
-      const updatedPeople = await PeopleService.update(peopleId, newData);
-      if (updatedPeople === null) {
-        return res.status(404).json({ message: 'Not Found' });
+      const people = await PeopleService.update(peopleId, newData);
+      if (people === null) {
+        return res.status(404).json({ description: 'Not Found', name: 'ID does not exist in the database' });
       }
-      return res.status(200).json(updatedPeople);
+      const result = {
+        _id: people._id,
+        nome: people.nome,
+        cpf: people.cpf,
+        data_nascimento: people.data_nascimento,
+        email: people.email,
+        senha: people.senha,
+        habilitado: people.habilitado
+      };
+      return res.status(200).json(result);
     } catch (err) {
-      return res.status(400).json({ message: err.message });
+      return res.status(400).json({ description: err.name, name: err.message });
     }
   }
 
@@ -63,11 +75,11 @@ class PeopleController {
     try {
       const people = await PeopleService.findById(peopleId);
       if (people === null) {
-        return res.status(404).json({ message: 'Not Found' });
+        return res.status(404).json({ description: 'Not Found', name: 'ID does not exist in the database' });
       }
       return res.status(200).json(people);
     } catch (err) {
-      return res.status(400).json({ message: err.message });
+      return res.status(400).json({ description: err.name, name: err.message });
     }
   }
 }
