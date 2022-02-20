@@ -13,6 +13,8 @@ paths:
   /car:
     post:
       summary: Cadastra novo carro
+      security:
+      - bearerAuth: []
       requestBody: 
         content:
           application/json:
@@ -74,6 +76,8 @@ paths:
                     type: string
     get:
       summary: Lista todos os carros
+      security:
+      - bearerAuth: []
       parameters:
       - name: modelo
         in: query
@@ -157,6 +161,8 @@ paths:
   /car/{_id}:
     get:
       summary: Busca um carro através de seu id
+      security:
+      - bearerAuth: []
       parameters:
       - name: _id
         in: path
@@ -212,6 +218,8 @@ paths:
                     type: string     
     put:
       summary: Atualiza um carro
+      security:
+      - bearerAuth: []
       parameters:
       - name: _id
         in: path
@@ -281,6 +289,8 @@ paths:
                     type: string
     delete:
       summary: Deleta um carro
+      security:
+      - bearerAuth: []
       parameters:
       - name: _id
         in: path
@@ -315,6 +325,8 @@ paths:
   /car/{_id}/acessorios/{descricaoId}:
     patch:
       summary: Atualiza um acessório através de seu id
+      security:
+      - bearerAuth: []
       parameters:
       - name: _id
         in: path
@@ -1098,3 +1110,9 @@ paths:
                     type: string
                   name:
                     type: string 
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
