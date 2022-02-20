@@ -809,7 +809,13 @@ paths:
           description: Bad Request
           content:
             application/json:
-              example: Error Message
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string 
     get:
       summary: Lista todas as locadoras
       parameters:
@@ -828,6 +834,16 @@ paths:
         schema:
           type: string
         required: false
+      - name: limit
+        in: query
+        schema:
+          type: number
+        required: false
+      - name: offset
+        in: query
+        schema:
+          type: number
+        required: false
       responses:
         200:
           description: OK
@@ -836,7 +852,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  locadora:
+                  locadoras:
                     type: array
                     items:
                       type: object
@@ -880,12 +896,13 @@ paths:
           description: Bad Request
           content:
             application/json:
-              example: Error Message
-        500:
-          description: Internal Server Error
-          content:
-            application/json:
-              example: Error Message
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string
   /rental/{_id}:
     get:
       summary: Busca uma locadora através de seu id
@@ -930,16 +947,28 @@ paths:
                           type: string
                         isFilial:
                           type: boolean 
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string                 
         400:
           description: Bad Request
           content:
             application/json:
-              example: Error Message                          
-        404:
-          description: Not Found
-          content: 
-            application/json:
-              example: Not Found
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string 
     put:
       summary: Atualiza uma locadora
       parameters:
@@ -1014,16 +1043,28 @@ paths:
                           type: string
                         isFilial:
                           type: boolean
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string                 
         400:
           description: Bad Request
           content:
             application/json:
-              example: Error Message
-        404:
-          description: Not Found
-          content: 
-            application/json:
-              example: Not Found       
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string       
     delete:
       summary: Deleta uma locadora
       parameters:
@@ -1035,34 +1076,25 @@ paths:
       responses:
         204:
           description: No Content
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string                 
         400:
           description: Bad Request
           content:
             application/json:
-              example: Error Message
-        404:
-          description: Not Found
-          content: 
-            application/json:
-              example: Not Found               
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  name:
+                    type: string 
