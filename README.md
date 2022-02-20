@@ -46,6 +46,8 @@ npm start
 
 ## Testando as rotas 👨‍💻
 
+Para usar as rotas você deve ser um usuário autenticado, portanto, antes de fazer suas requisições obtenha um token na rota de autenticação e informe o token na aba de autorização do Postman como um Bearer Token.
+
 ### POST - `http://localhost:3000/api/v1/car`
 
 > Cadastrar carros
@@ -96,6 +98,18 @@ npm start
 
 > Deletar um carro através de seu ID
 
+### PATCH - `http://localhost:3000/api/v1/car/:id/acessorios/:id`
+
+> Atualizar um acessorio de um carro
+
+> Exemplo
+
+```json
+{
+  "descricao": "Ar-condicionado"
+}
+```
+
 ### POST - `http://localhost:3000/api/v1/people`
 
 > Cadastrar uma pessoa
@@ -129,8 +143,8 @@ npm start
 
 ```json
 {
-"data_nascimento": "04/03/2021",
-"habilitado": "não"
+  "data_nascimento": "04/03/2021",
+  "habilitado": "não"
 }
 ```
 
@@ -150,6 +164,55 @@ npm start
   "senha": "123456"
 }
 ```
+
+### POST - `http://localhost:3000/api/v1/rental`
+
+> Cadastrar uma locadora
+
+>Exemplo
+
+```json
+{
+  "nome": "Localiza Rent a Car",
+  "cnpj": "16.670.085/0001-55",
+  "atividades": "Aluguel de Carros E Gestão de Frotas",
+  "endereco": [
+    {
+      "cep": "96200-200",
+      "number":"1234",
+      "isFilial": false
+    }
+  ]
+}
+```
+
+### GET - `http://localhost:3000/api/v1/rental`
+
+> Listar todas as locadoras
+
+### GET - `http://localhost:3000/api/v1/rental/:id`
+
+> Buscar uma locadora pelo seu ID
+
+### PUT - `http://localhost:3000/api/v1/rental/:id`
+
+> Atualizar uma locadora pelo seu ID
+
+> Exemplo
+
+```json
+{
+  "nome": "Localiza"
+}
+```
+
+### DELETE - `http://localhost:3000/api/v1/rental/:id`
+
+> Deletar uma locadora pelo seu ID 
+
+## Swagger
+
+Para acessar o swagger da api acesse esse endereço: http://localhost:3000/api/v1/api-docs/
 
 # 😊 Agradecimentos
 
