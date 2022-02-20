@@ -24,7 +24,8 @@ module.exports = async (req, res, next) => {
             number: Joi.string().min(1).trim().required(),
             isFilial: Joi.boolean().required()
           })
-        ).required()
+        )
+        .required()
     });
 
     const { error } = await schema.validate(req.body, { abortEarly: true });
