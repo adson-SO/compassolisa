@@ -212,7 +212,11 @@ Para usar as rotas você deve ser um usuário autenticado, portanto, antes de fa
 
 ## Swagger
 
-Para acessar o swagger da api acesse esse endereço: http://localhost:3000/api/v1/api-docs/
+Para acessar o swagger da api, primeiro inicie a aplicação e depois acesse o seguinte endereço em seu browser: http://localhost:3000/api/v1/api-docs/
+
+## Deploy
+
+Link da aplicação: https://api-compasslisa.herokuapp.com/
 
 # 😊 Agradecimentos
 
